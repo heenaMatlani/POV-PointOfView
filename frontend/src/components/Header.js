@@ -9,7 +9,7 @@ import image3 from '../assets/menu.png';
 
 function Header() {
   return (
-    <div className="header">
+    <div className="header sticky">
       <div className="header__left">
         <img className='header__menu' src={menu} alt="Menu Icon" />
         <img className='header__logo' src={logo} alt="Logo" />
