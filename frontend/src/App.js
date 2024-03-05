@@ -7,8 +7,11 @@ function App() {
   return (
     <div className="app">
       <Header/>
-      <Sidebar/>
-      <Recommended/>
+      <div className='app__page'>
+        <Sidebar/>
+        <Recommended/>
+      </div>
+      
     </div>
   );
 }
