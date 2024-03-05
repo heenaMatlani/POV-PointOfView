@@ -34,7 +34,7 @@
 }
 
 .header__searchbar {
-    height: 30px;
+  height: 30px;
   width: 700px;
   border-width: 1px;
   border-radius: 4px;
@@ -53,3 +53,22 @@
   height: 30px;
   margin-right: 10px;
 }
+
+.header__searchContainer {
+  position: relative;
+}
+.header__searchbar {
+  padding-right: 40px; /* Adjust this value according to the button size */
+}
+
+.header__searchButton {
+  position: absolute;
+  top: 0;
+  right: 320px;
+  height: 100%;
+  width: 40px; /* Adjust this value according to the button size */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
