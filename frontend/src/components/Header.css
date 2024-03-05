@@ -24,7 +24,7 @@
 }
 
 .header__logo {
-  height: 70px;
+  height: 40px;
   object-fit: contain;
 }
 
@@ -35,13 +35,14 @@
 
 .header__searchbar {
   height: 30px;
-  width: 700px;
+  width: 200px;
   border-width: 1px;
   border-radius: 4px;
+  padding-right: 40px;
 }
 
 .header__searchbar::placeholder{
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .header__right {
@@ -57,18 +58,45 @@
 .header__searchContainer {
   position: relative;
 }
-.header__searchbar {
-  padding-right: 40px; /* Adjust this value according to the button size */
-}
+
 
 .header__searchButton {
   position: absolute;
   top: 0;
-  right: 320px;
+  left:auto;
   height: 100%;
-  width: 40px; /* Adjust this value according to the button size */
+  width: 40px; 
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
+
+@media (min-width: 576px) { 
+  .header__searchbar{
+      width: 300px;
+  }
+}
+
+@media (min-width: 768px) { 
+
+  .header__searchbar{
+      width: 450px;
+  }
+}
+
+@media (min-width: 992px) { 
+  .header__searchbar{
+      width: 600px;
+  }
+}
+/* @media (min-width: 1200px) { 
+  .header__searchbar{
+      width: 600px;
+  }
+}
+@media (min-width: 1400px) { 
+  .header__searchbar{
+      width: 600px;
+  }
+} */
