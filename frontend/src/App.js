@@ -1,13 +1,11 @@
 import './App.css';
-import Header from './components/Header';
-import Recommended from './components/Recommended';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Homepage from './components/Homepage';
 
 function App() {
   return (
     <div className="app">
-      <Header/>
-      <Recommended/>
+      <Homepage/>
     </div>
   );
 }
