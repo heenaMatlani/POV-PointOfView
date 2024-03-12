@@ -71,6 +71,15 @@
   cursor: pointer;
 }
 
+.sidebar {
+  position: absolute;
+  top: calc(100% + 10px); /* Adjust this value as needed */
+  left: 0;
+  background-color: #fff; /* Background color of the sidebar */
+  border: 1px solid #ccc; /* Border for the sidebar */
+  padding: 10px;
+  z-index: 999; /* Ensure the sidebar is above other content */
+}
 
 @media (min-width: 576px) { 
   .header__searchbar{
