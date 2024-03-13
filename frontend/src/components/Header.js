@@ -13,7 +13,6 @@ function Header() {
   return (
     <div className={`header sticky ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       <div className="header__left">
-        {/* <img className='header__menu' src={menu} alt="Menu Icon" /> */}
         <FaBars className="header__menu" onClick={toggleSidebar} />
         <img className="header__logo" src={logo} alt="Logo" />
       </div>
@@ -31,7 +30,6 @@ function Header() {
       
       </div>
       <div className="header__right">
-        {/* <img className='header__image' src={image1} alt="Image1" /> */}
         <i class="bi bi-heart"></i>
         <i class="bi bi-person-circle"></i>
       </div>

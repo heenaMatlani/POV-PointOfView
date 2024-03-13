@@ -39,7 +39,7 @@
 
 .header__searchbar {
   height: 30px;
-  width: 200px;
+  width: 150px;
   border-width: 1px;
   border-radius: 4px;
   padding-right: 40px;
@@ -93,8 +93,7 @@ color: white;
   position: absolute;
   top: 100%; 
   left: 0;
-  background-color: black; 
-  /* border: 1px solid #ccc;  */
+  background-color: black;
   padding: 10px;
   z-index: 999; 
   height: 100vh; 
@@ -119,15 +118,13 @@ color: white;
   margin-right: 2px;
 }
 
-
-/* Media query for responsiveness */
 @media (max-width: 768px) {
   .header__left {
     position: relative;
   }
   .sidebar {
-    width: 100%; /* Sidebar occupies full width on small screens */
-    top: 50px; /* Adjust top position for small screens */
+    width: 100%;
+    top: 50px;
   }
 }
 
@@ -150,13 +147,3 @@ color: white;
       width: 600px;
   }
 }
-/* @media (min-width: 1200px) { 
-  .header__searchbar{
-      width: 600px;
-  }
-}
-@media (min-width: 1400px) { 
-  .header__searchbar{
-      width: 600px;
-  }
-} */
