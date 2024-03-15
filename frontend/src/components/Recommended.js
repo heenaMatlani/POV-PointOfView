@@ -13,7 +13,7 @@ function Recommended() {
             <div className="card">
               <img src={thumbnail} className="card-img-top menuu" alt="ima" />
               <div className="card-body">
-                <img src={channel} className="channel" alt="channel" />
+                <img src= "https://heena0708.s3.ap-south-1.amazonaws.com/icons/ABPNews.jpeg"className="channel" alt="channel" />
                 <p className="card-text">
                   Some quick example text to build on the card title and make up
                   the bulk of the card's content.
