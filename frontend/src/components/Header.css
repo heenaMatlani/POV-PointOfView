@@ -1,5 +1,5 @@
 .header {
-  background-color: black;
+  background-color: #191919;
   display: flex;
   align-items: center;
   position: sticky;
@@ -7,7 +7,7 @@
   justify-content: space-between;
   width: 100%;
   height: 50px;
-  border: 1px black solid;
+  /* border: 1px black solid; */
   padding: 10px;
   padding-right: 12px;
   z-index: 1000;
@@ -37,12 +37,14 @@
   text-align: center;
 }
 
-.header__searchbar {
+/* .header__searchbar {
   height: 30px;
   width: 150px;
   border-width: 1px;
   border-radius: 4px;
   padding-right: 40px;
+  outline: none; 
+  background-color: rgba(25, 25, 25, 0.9);
 }
 
 .header__searchbar::placeholder{
@@ -76,7 +78,60 @@
 }
 .header__search{
 color: white;
+} */
+
+/* Header.css */
+
+.header__searchbar {
+  height: 36px; /* Increase height for better visibility */
+  width: calc(100% - 50px); /* Adjust width to accommodate search button */
+  border: 1px solid #d3d3d3; /* Add border */
+  border-radius: 24px; /* Add border radius to make it rounded */
+  padding: 8px 16px; /* Add padding */
+  font-size: 16px; /* Adjust font size */
+  outline: none; 
+  background-color: rgba(25, 25, 25, 0.9);
+  color: white;
 }
+
+.header__searchbar::placeholder {
+  font-size: 16px; /* Adjust placeholder font size */
+}
+
+.header__searchButton {
+  position: absolute;
+  top: 50%;
+  left: auto;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.header__searchButton:focus {
+  outline: none; /* Remove default focus outline */
+}
+
+.header__search  {
+  color: white;
+  font-size: 18px;
+  top: 1%;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+}
+
+.header__image {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.header__searchContainer {
+  position: relative;
+}
+
 .header__right {
   display: flex;
   align-items: center;
@@ -90,19 +145,35 @@ color: white;
 
 
 .sidebar {
-  position: absolute;
-  top: 100%; 
+  position: fixed;
+  top: 0%; 
   left: 0;
-  background-color: black; 
-  /* border: 1px solid #ccc;  */
+  background-color: rgba(25, 25, 25, 0.9); 
   padding: 10px;
-  z-index: 1000; 
+  z-index: 2000; 
   height: 100vh; 
   overflow-y: auto; 
   width: 20%;
+  transition: transform 0.3s ease;
+}
+.sidebar-open {
+  transform: translateX(0);
+}
+.sidebar__menu {
+  font-size: 20px;
+  height: 40px;
+  margin-right: 20px;
+  object-fit: contain;
+  color: white;
 }
 
-
+.sidebar__logo {
+  height: 40px;
+  object-fit: contain;
+}
+.sidebar__list{
+  padding-top: 30px;
+}
 .sidebar ul {
   list-style-type: none; 
   padding: 0; 
@@ -112,12 +183,24 @@ color: white;
 {
   color: white;
   font-size: 1em;
-  margin-top: 10px;
+  margin-top: 5px;
 
 }
 .sidebar i{
   color: white;
   margin-right: 2px;
+}
+.sidebar__list ul li button {
+  margin-bottom: 10px; /* Add margin between buttons */
+}
+
+.explore__list {
+  padding-left: 20px; /* Indent the explore list */
+}
+
+.explore__list ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 0;
 }
 
 
@@ -129,19 +212,34 @@ color: white;
   width: 100%;
   text-align: left;
   color: white;
+  transition: background-color 0.3s ease, border-radius 0.3s ease
 }
 
 .sidebar ul li button:hover {
   background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
 }
+.sidebar-open {
+  transform: translateX(0);
+}
+
+.sidebar-open ~ .header::before {
+  background-color: rgba(255, 255, 255, 0.5); 
+}
+
+.sidebar-open ~ .header {
+  filter: blur(5px); 
+  pointer-events: none; 
+}
+
 
 @media (max-width: 768px) {
   .header__left {
     position: relative;
   }
   .sidebar {
-    width: 100%;
-    top: 50px;
+    width: 50%;
+    top: 1%;
   }
 }
 
@@ -150,6 +248,10 @@ color: white;
   .header__searchbar{
       width: 300px;
   }
+  .sidebar {
+    width: 50%;
+    top: 1%;
+  }
 }
 
 @media (min-width: 768px) { 
@@ -157,10 +259,18 @@ color: white;
   .header__searchbar{
       width: 450px;
   }
+  .sidebar {
+    width: 50%;
+    top: 1%;
+  }
 }
 
 @media (min-width: 992px) { 
   .header__searchbar{
       width: 600px;
+  }
+  .sidebar {
+    width: 20%;
+    top: 1%;
   }
 }
