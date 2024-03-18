@@ -1,13 +1,13 @@
-import React from 'react'
-import './Channel.css'
-import Header from './Header'
+import React from "react";
+import "./Channel.css";
+import Header from "./Header";
 function Channel() {
   return (
     <div>
-        <Header/>
+      <Header />
       <h1>channel</h1>
     </div>
-  )
+  );
 }
 
-export default Channel
+export default Channel;
