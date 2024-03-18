@@ -7,8 +7,7 @@
   transition: transform 0.3s ease;
 }
 
-.card-link{
-    color: black;
-    text-decoration: none;
-}
 
+.card-text{
+  text-decoration: none;
+}
