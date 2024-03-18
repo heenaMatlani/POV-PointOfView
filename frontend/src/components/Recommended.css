@@ -42,10 +42,6 @@
     border-radius: 50%;
 }
 
-.card-text{
-    display: flex;
-}
-
 @media (min-width: 576px) { 
     .card{
         width: 15rem;
