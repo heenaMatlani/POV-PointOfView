@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 import logo from "../assets/logo1.jpeg";
 import { FaBars, FaSearch} from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Header() {
 
@@ -20,7 +21,7 @@ function Header() {
     <div className={`header sticky ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       <div className="header__left">
         <FaBars className="header__menu" onClick={toggleSidebar} />
-        <img className="header__logo" src={logo} alt="Logo" />
+        <Link to="/"><img className="header__logo" src={logo} alt="Logo" /></Link>
       </div>
       <div className="header__center">
         <div className="header__searchContainer">
@@ -30,13 +31,13 @@ function Header() {
             placeholder="Search"
           />
           <button className="header__searchButton">
-            <FaSearch className="header__search" />
+            <Link to="/searched"><FaSearch className="header__search" /></Link>
           </button>
         </div>
       
       </div>
       <div className="header__right">
-        <i class="bi bi-heart"></i>
+        <Link to="/likedvideos"><i class="bi bi-heart"></i></Link>
         <i class="bi bi-person-circle"></i>
       </div>
 
@@ -48,9 +49,9 @@ function Header() {
           </div>
           <div className="sidebar__list">
           <ul>
-            <li><button><i class="bi bi-house"></i> HOME</button></li>
-            <li><button><i class="bi bi-heart"></i> LIKED VIDEOS</button></li>
-            <li><button><i className="bi bi-collection-play"></i> CHANNELS</button></li>
+            <Link to="/"><li><button><i class="bi bi-house"></i> HOME</button></li></Link>
+            <Link to="/likedvideos"><li><button><i class="bi bi-heart"></i> LIKED VIDEOS</button></li></Link>
+            <Link to="/channels"><li><button><i className="bi bi-collection-play"></i> CHANNELS</button></li></Link>
             <li><button onClick={toggleExplore}><i class="bi bi-fire"></i> EXPLORE</button></li>
             <li>
             {isExploreOpen && (
@@ -63,7 +64,7 @@ function Header() {
           </div>
         )}
             </li>
-            <li><button><i class="bi bi-chat-square-text"></i> SEND FEEDBACK</button></li>
+            <Link to="/feedback"><li><button><i class="bi bi-chat-square-text"></i> SEND FEEDBACK</button></li></Link>
             <li><button><i class="bi bi-info-circle"></i> ABOUT</button></li>
           </ul>
         

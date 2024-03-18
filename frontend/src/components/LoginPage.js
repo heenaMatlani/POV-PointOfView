@@ -1,13 +1,13 @@
 import React from 'react'
 import Header from './Header'
 
-function Videopage() {
+function LoginPage() {
   return (
     <div>
-      <Header/>
-      <h1>vp</h1>
+        <Header/>
+      <h1>lp</h1>
     </div>
   )
 }
 
-export default Videopage
+export default LoginPage

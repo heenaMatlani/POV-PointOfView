@@ -1,13 +1,13 @@
 import React from 'react'
+import './SearchPage.css'
 import Header from './Header'
-
-function Videopage() {
+function SearchPage() {
   return (
     <div>
       <Header/>
-      <h1>vp</h1>
+      <h1>searched me??</h1>
     </div>
   )
 }
 
-export default Videopage
+export default SearchPage
