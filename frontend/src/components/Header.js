@@ -21,7 +21,7 @@ function Header() {
     <div className={`header sticky ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       <div className="header__left">
         <FaBars className="header__menu" onClick={toggleSidebar} />
-        <Link to="/"><img className="header__logo" src={logo} alt="Logo" /></Link>
+        <Link to="/homepage"><img className="header__logo" src={logo} alt="Logo" /></Link>
       </div>
       <div className="header__center">
         <div className="header__searchContainer">
@@ -38,7 +38,7 @@ function Header() {
       </div>
       <div className="header__right">
         <Link to="/likedvideos"><i class="bi bi-heart"></i></Link>
-        <i class="bi bi-person-circle"></i>
+        <Link to="/"><i class="bi bi-person-circle"></i></Link>
       </div>
 
       {isSidebarOpen && (
@@ -49,7 +49,7 @@ function Header() {
           </div>
           <div className="sidebar__list">
           <ul>
-            <Link to="/"><li><button><i class="bi bi-house"></i> HOME</button></li></Link>
+            <Link to="/homepage"><li><button><i class="bi bi-house"></i> HOME</button></li></Link>
             <Link to="/likedvideos"><li><button><i class="bi bi-heart"></i> LIKED VIDEOS</button></li></Link>
             <Link to="/channels"><li><button><i className="bi bi-collection-play"></i> CHANNELS</button></li></Link>
             <li><button onClick={toggleExplore}><i class="bi bi-fire"></i> EXPLORE</button></li>

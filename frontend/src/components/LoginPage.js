@@ -1,13 +1,17 @@
-import React from 'react'
-import Header from './Header'
+// LoginPage.js
+import thumbnail from "../assets/thumbnail.png";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function LoginPage() {
+const LoginPage = () => {
   return (
     <div>
-        <Header/>
-      <h1>lp</h1>
+      <h2>Login Page</h2>
+      <Link to="/homepage">
+        <button>Login</button>
+      </Link>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

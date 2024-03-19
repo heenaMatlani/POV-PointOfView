@@ -5,7 +5,7 @@ function Videopage() {
   return (
     <div>
       <Header/>
-      <h1>vp</h1>
+      <h1>video page</h1>
     </div>
   )
 }

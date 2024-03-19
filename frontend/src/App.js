@@ -13,10 +13,10 @@ function App() {
   return (
     <Router>
     <Routes>
-      <Route path="/" element={<Homepage/>} />
+      <Route path="/homepage" element={<Homepage/>} />
       <Route path="/video" element= {<Videopage/>}/>
       <Route path="/likedvideos" element= {<LikedVideos/>}/>
-      <Route path="/login" element= {<LoginPage/>}/>
+      <Route path="/" element= {<LoginPage/>}/>
       <Route path="/channels" element= {<Channel/>}/>
       <Route path="/feedback" element= {<Feedback/>}/>
       <Route path="/searched" element= {<SearchPage/>}/>
