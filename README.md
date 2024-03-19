@@ -1,4 +1,4 @@
-npm install react-scripts --save-dev \n
-npm install bootstrap \n
-npm install react-icons --save \n
-npm install react-router-dom \n
+npm install react-scripts --save-dev <br>
+npm install bootstrap <br>
+npm install react-icons --save <br>
+npm install react-router-dom <br>
