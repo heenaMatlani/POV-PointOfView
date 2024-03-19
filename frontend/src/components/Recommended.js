@@ -18,14 +18,14 @@ function Recommended() {
       <div className="container text-center">
         <div className="row">
                     {videos.map(video => (
-                        <div key={video.video_id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                        <div key={video[0]} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                             <Link className="video-link" to="/video">
                                 <Card
                                     className="recommended-card"
-                                    video={video.video_url}
-                                    thumbnail={video.video_thumbnail}
-                                    channel={video.channel_id}
-                                    description={video.title}
+                                    video={video[2]}
+                                    thumbnail={video[3]}
+                                    channel={'https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg'}
+                                    description={video[6]}
                                 />
                             </Link>
                         </div>
