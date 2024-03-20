@@ -12,7 +12,9 @@ function Recommended() {
             .then(data => setVideos(data))
             .catch(error => console.log(error));
     }, []);
-
+    let channelName = "Aaj Tak"
+    let views = "12"
+    let age = "12"
     return (
     <div className="recommended">
       <div className="container text-center">
@@ -25,7 +27,10 @@ function Recommended() {
                                     video={video[2]}
                                     thumbnail={video[3]}
                                     channel={'https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg'}
-                                    description={video[6]}
+                                    title={video[6]}
+                                    channelName = {channelName}
+                                    views = {views}
+                                    age = {age}
                                 />
                             </Link>
                         </div>
