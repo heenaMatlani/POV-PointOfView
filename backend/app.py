@@ -7,7 +7,7 @@ CORS(app)
 
 db_host = 'localhost'
 db_user = 'root'
-db_password = 'pass'
+db_password = 'Aa@241203'
 db_name = 'pov'
 
 connection = pymysql.connect(host=db_host, user=db_user, password=db_password, database=db_name)
