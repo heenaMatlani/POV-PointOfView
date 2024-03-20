@@ -1,0 +1,10 @@
+.search{
+    background-color: #191919;
+}
+
+.search__content{
+    margin-top: 40px;
+}
+.search__link{
+    text-decoration: none;
+}
