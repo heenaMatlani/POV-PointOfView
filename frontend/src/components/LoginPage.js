@@ -64,9 +64,6 @@ const LoginPage = () => {
 
   return (
     <div className='wrapper'>
-      {/* <Link to="/homepage">
-        <button>Login</button>
-      </Link> */}
       <div className="login__left">
 <img className="login__logo" src={logo} alt="Logo" />
       </div>
@@ -93,7 +90,6 @@ const LoginPage = () => {
           )}
 
         {passwordError && <p className="error-message">{passwordError}</p>}
-        {/* <button type='submit'>Login</button> */}
         <button type='submit'>{isSignup ? 'Sign Up' : 'Login'}</button>
         <div className='remember-forgot'>
           <label>
@@ -102,12 +98,11 @@ const LoginPage = () => {
           <a href='#'>Forgot Password?</a>
         </div>
         <div className='register-link'>
-          {/* <p>Don't have an account?<a href="#">Sign Up</a></p> */}
           <p>{isSignup ? 'Already have an account?' : "Don't have an account?"}<a href="#" onClick={toggleSignup}>{isSignup ? 'Login' : 'Sign Up'}</a></p>
         </div>
       </form>
       <div className='channel-link'>
-       <p><Link to="/ChannelPage">Are you a channel? </Link></p>
+       <p><Link to="/subscription">Are you a channel? </Link></p>
       </div>
 
       </div>
