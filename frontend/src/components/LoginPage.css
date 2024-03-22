@@ -151,3 +151,23 @@ form {
 {
     text-transform: underline;
 }
+
+.channel-link {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .channel-link p {
+    color: white;
+    font-size: 20px;
+  }
+  
+  .channel-link p a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .channel-link p a:hover {
+    color: lightgray;
+  }
+  

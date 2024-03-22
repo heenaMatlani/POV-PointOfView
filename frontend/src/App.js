@@ -8,6 +8,7 @@ import LoginPage from './components/LoginPage';
 import Channel from './components/Channel';
 import Feedback from './components/Feedback';
 import SearchPage from './components/SearchPage';
+import ChannelPage from './components/Channelpage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/channels" element= {<Channel/>}/>
       <Route path="/feedback" element= {<Feedback/>}/>
       <Route path="/searched" element= {<SearchPage/>}/>
+      <Route path="/ChannelPage" element= {<ChannelPage/>}/>
     </Routes>
     </Router>
   );

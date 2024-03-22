@@ -23,6 +23,7 @@ const LoginPage = () => {
         <h1 className='heading'>POV</h1>
         <h2 className='subheading'>Point Of View</h2>
       </div>
+      <div className='login__right'>
       <form action="">
         <h1>{isSignup ?  'Sign Up' : 'Login'}</h1>
         <div className='input-box'>
@@ -51,8 +52,11 @@ const LoginPage = () => {
           <p>{isSignup ? 'Already have an account?' : "Don't have an account?"}<a href="#" onClick={toggleSignup}>{isSignup ? 'Login' : 'Sign Up'}</a></p>
         </div>
       </form>
-    
-      
+      <div className='channel-link'>
+       <p><Link to="/ChannelPage">Are you a channel? </Link></p>
+      </div>
+
+      </div>
     </div>
   );
 };
