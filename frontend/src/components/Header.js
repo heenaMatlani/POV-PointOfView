@@ -19,8 +19,17 @@ function Header() {
   
   return (
     <div className={`header sticky ${isSidebarOpen ? 'sidebar-open' : ''}`}>
-      <div className="header__left">
+      {/* <div className="header__left">
         <FaBars className="header__menu" onClick={toggleSidebar} />
+        <Link to="/homepage"><img className="header__logo" src={logo} alt="Logo" /></Link>
+      </div> */}
+            <div className="header__left">
+        <div className="hamburger" onClick={toggleSidebar}>
+          <div className="hamburger__container">
+            <div className="hamburger__inner"></div>
+            <div className="hamburger__hidden"></div>
+          </div>
+        </div>
         <Link to="/homepage"><img className="header__logo" src={logo} alt="Logo" /></Link>
       </div>
       <div className="header__center">
@@ -43,10 +52,19 @@ function Header() {
 
       {isSidebarOpen && (
         <div className="sidebar">
-          <div className="header__left">
+          {/* <div className="header__left">
             <FaBars className="sidebar__menu" onClick={toggleSidebar} />
             <img className="sidebar__logo" src={logo} alt="Logo" />
+          </div> */}
+                <div className="header__left">
+        <div className="hamburger" onClick={toggleSidebar}>
+          <div className="hamburger__container">
+            <div className="hamburger__inner"></div>
+            <div className="hamburger__hidden"></div>
           </div>
+        </div>
+        <Link to="/homepage"><img className="header__logo" src={logo} alt="Logo" /></Link>
+      </div>
           <div className="sidebar__list">
           <ul>
             <Link to="/homepage"><li><button><i class="bi bi-house"></i> HOME</button></li></Link>
@@ -57,13 +75,13 @@ function Header() {
             {isExploreOpen && (
           <div className="explore__list">
             <ul>
-              <li><i class="bi bi-globe"></i>National </li>
-              <li><i class="bi bi-film"></i>Entertainment </li>
-              <li><i class="bi bi-globe"></i>International </li>
-              <li><i class="bi bi-trophy"></i>Sports  </li>
-              <li><i class="bi bi-capsule"></i>Health  </li>
-              <li><i class="bi bi-briefcase"></i>Business  </li>
-              <li><i class="bi bi-phone"></i>Technology </li>
+              <li><button><i class="bi bi-geo-alt"></i>National</button> </li>
+              <li><button><i class="bi bi-film"></i>Entertainment </button></li>
+              <li><button><i class="bi bi-globe"></i>International </button></li>
+              <li><button><i class="bi bi-trophy"></i>Sports </button> </li>
+              <li><button><i class="bi bi-capsule"></i>Health  </button></li>
+              <li><button><i class="bi bi-briefcase"></i>Business  </button></li>
+              <li><button><i class="bi bi-phone"></i>Technology </button></li>
             </ul>
           </div>
         )}
