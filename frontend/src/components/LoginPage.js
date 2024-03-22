@@ -1,7 +1,8 @@
 // LoginPage.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './LoginPage.css'
+import './LoginPage.css';
+import logo from "../assets/logo1.jpeg";
 import { FaUser,FaLock } from 'react-icons/fa';
 const LoginPage = () => {
   const [isSignup, setIsSignUp] = useState(false);
@@ -15,6 +16,13 @@ const LoginPage = () => {
       {/* <Link to="/homepage">
         <button>Login</button>
       </Link> */}
+      <div className="login__left">
+<img className="login__logo" src={logo} alt="Logo" />
+      </div>
+      <div className='heading__pov'>
+        <h1 className='heading'>POV</h1>
+        <h2 className='subheading'>Point Of View</h2>
+      </div>
       <form action="">
         <h1>{isSignup ?  'Sign Up' : 'Login'}</h1>
         <div className='input-box'>
