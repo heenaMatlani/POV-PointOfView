@@ -57,9 +57,13 @@ function Header() {
             {isExploreOpen && (
           <div className="explore__list">
             <ul>
-              <li>Item 1</li>
-              <li>Item 1</li>
-              <li>Item 1</li>
+              <li><i class="bi bi-globe"></i>National </li>
+              <li><i class="bi bi-film"></i>Entertainment </li>
+              <li><i class="bi bi-globe"></i>International </li>
+              <li><i class="bi bi-trophy"></i>Sports  </li>
+              <li><i class="bi bi-capsule"></i>Health  </li>
+              <li><i class="bi bi-briefcase"></i>Business  </li>
+              <li><i class="bi bi-phone"></i>Technology </li>
             </ul>
           </div>
         )}

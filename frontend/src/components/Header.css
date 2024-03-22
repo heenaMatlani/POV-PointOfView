@@ -193,15 +193,26 @@ color: white;
 .sidebar__list ul li button {
   margin-bottom: 10px; /* Add margin between buttons */
 }
-
+.sidebar ul li button .bi{
+margin-right: 5px;
+}
 .explore__list {
   padding-left: 20px; /* Indent the explore list */
 }
 
-.explore__list ul {
-  list-style-type: none; /* Remove bullets */
-  padding: 0;
+
+
+.explore__list ul li {
+margin-top: 7px;
+font-size: 1em;
+
 }
+
+.explore__list ul li i {
+  margin-right: 15px; /* Add space between icon and text */
+}
+
+
 
 
 .sidebar ul li button {
