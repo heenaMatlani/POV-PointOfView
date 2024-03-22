@@ -5,7 +5,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-def establish_connection(host='localhost', user='root', passwd='matlani01k', database='pov'):
+def establish_connection(host='localhost', user='root', passwd='Amritjot@1232', database='pov'):
     """Establishes connection with local database, throws exception(not error) if connection not established"""
     import mysql.connector as cntr
     from mysql.connector import Error
