@@ -5,7 +5,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-def establish_connection(host='localhost', user='root', passwd='Amritjot@1232', database='pov'):
+def establish_connection(host='localhost', user='root', passwd='matlani01k', database='pov'):
     """Establishes connection with local database, throws exception(not error) if connection not established"""
     import mysql.connector as cntr
     from mysql.connector import Error
@@ -76,6 +76,19 @@ def get_videos():
     connection = establish_connection()
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM videos")
+    videos = cursor.fetchall()
+    cursor.close()
+    return jsonify(videos)
+
+@app.route('/explore', methods=['POST'])
+def get_genre_videos():
+    """Function for retrieving videos of a particular genre."""
+    data = request.json
+    genre = data.get('genre')
+
+    connection = establish_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM videos WHERE genre=%s", (genre,))
     videos = cursor.fetchall()
     cursor.close()
     return jsonify(videos)
