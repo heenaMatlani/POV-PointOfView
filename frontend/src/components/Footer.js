@@ -4,7 +4,10 @@ function Footer() {
   return (
     <>
       <footer className="footer">
-        <p>Questions? Call 1-866-579-7172</p>
+        <div className="footer__info">
+        <p>Questions? Call 1-866-579-7172 </p>
+        <p className="footer__mail">To add videos contact on upload@pov.com </p>
+        </div>
         <div className="footer-cols">
           <ul>
             <li>
