@@ -1,31 +1,58 @@
 import mysql.connector
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
+import random
 
-conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="matlani01k",
-    database="pov"
-)
+def get_recommended_videos(conn, n, user_watch_history):
+    """Function used to implement the algorithm to get recommended video and return it"""
 
-user_id = input("Enter user id: ")
-user_watch_history = pd.read_sql_query(f"SELECT user_id, video_id, genre, views FROM watch_history WHERE user_id = {user_id}", conn)
+    video_data = pd.read_sql_query("SELECT video_id, genre FROM videos", conn)
+    merged_data = pd.merge(user_watch_history, video_data, on='genre')
 
-video_data = pd.read_sql_query("SELECT video_id, genre FROM videos", conn)
-merged_data = pd.merge(user_watch_history, video_data, on='genre')
+    X = merged_data[['user_id', 'video_id_y']].drop_duplicates().values
+    knn = NearestNeighbors(n_neighbors=n, metric='cosine')
+    knn.fit(X)
 
-X = merged_data[['user_id', 'video_id_y']].drop_duplicates().values
+    target_user = user_watch_history[['user_id', 'video_id']].iloc[0].values.reshape(1, -1)
+    distances, indices = knn.kneighbors(target_user)
 
-knn = NearestNeighbors(n_neighbors=10, metric='cosine')
-knn.fit(X)
+    recommended_videos = merged_data.iloc[indices[0]]['video_id_y'].values
+    unique_recommended_videos = list(set(recommended_videos))
 
-target_user = user_watch_history[['user_id', 'video_id']].iloc[0].values.reshape(1, -1)
-distances, indices = knn.kneighbors(target_user)
+    return unique_recommended_videos
 
-recommended_videos = merged_data.iloc[indices[0]]['video_id_y'].values
-recommended_genres = merged_data.iloc[indices[0]]['genre'].values
+def get_random_videos(conn, n, videos):
+    """Function used to fetch random videos from database"""
 
-print(f'Recommended Videos: {recommended_videos}')
-print(f'Recommended Genres: {recommended_genres}')
+    cursor = conn.cursor()
+    cursor.execute("SELECT genre FROM videos")
+    genres = cursor.fetchall()
 
+    random_videos = set()
+    while len(random_videos) < n:
+        for genre in genres:
+            cursor.execute("SELECT video_id FROM videos WHERE genre = %s ORDER BY RAND() LIMIT 1", genre)
+            video_id = cursor.fetchone()
+            if video_id and video_id not in videos:
+                random_videos.add(video_id[0])
+                if len(random_videos) == n:
+                    break
+
+    cursor.close()
+    return list(random_videos)
+
+def get_videos(conn, user_id, num_videos):
+    """Function used to return random or recommended video based on user history"""
+
+    user_watch_history = pd.read_sql_query(f"SELECT user_id, video_id, genre, views FROM watch_history WHERE user_id = {user_id}", conn)
+    videos = []
+    if user_watch_history.empty:
+        return get_random_videos(conn, num_videos, videos)
+
+    videos = get_recommended_videos(conn, num_videos, user_watch_history)
+    count = len(videos)
+
+    if count < num_videos:
+        videos.extend(get_random_videos(conn, num_videos-count, videos))
+
+    return videos
