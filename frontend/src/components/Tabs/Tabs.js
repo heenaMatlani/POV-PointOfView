@@ -19,7 +19,7 @@ function Tabs({ activeTabName, onClickTab }) {
   return (
     <div className="tab">
       <section className="tabs">
-        <div className="container">
+        <div className="container tabs__container">
           {renderTabTitle(
             CANCEL_AT_ANY_TIME,
             activeTabName === CANCEL_AT_ANY_TIME,
@@ -43,7 +43,7 @@ function Tabs({ activeTabName, onClickTab }) {
 
       {activeTabName === CANCEL_AT_ANY_TIME && (
         <section className="tab-content">
-          <div className="container">
+          <div className="container tabs__container">
             <div
               id="tab-1-content"
               className={`tab-content-item ${
@@ -72,7 +72,7 @@ function Tabs({ activeTabName, onClickTab }) {
 
       {activeTabName === WATCH_ANYWHERE && (
         <section classname="tab-content">
-          <div class="container">
+          <div class="container tabs__container">
             <div
               id="tab-2-content"
               className={`tab-content-item ${
@@ -125,7 +125,7 @@ function Tabs({ activeTabName, onClickTab }) {
       )}
       {activeTabName === PRICE && (
         <section className="tab-content">
-          <div className="container">
+          <div className="container tabs__container">
             <div
               id="tab-3-content"
               className={`tab-content-item ${
