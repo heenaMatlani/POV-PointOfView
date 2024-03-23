@@ -9,33 +9,7 @@
 
 .video-link{
     text-decoration: none;
-}
-/* .sidebar-open ~ .recommended::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.5); 
-    z-index: 999; 
-  } */
-  
-  /* .sidebar-open ~ .recommended {
-    background-color: white;
-    filter: blur(1px); 
-    pointer-events: none; 
-  }
-   */
-  
-  
-.card{
-    text-decoration: none;
-    width: 29rem;
-    height:30rem;
-    margin: 20px;
-}
-
+}  
 
 
 @media (min-width: 576px) { 
