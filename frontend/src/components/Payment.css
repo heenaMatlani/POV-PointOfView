@@ -1,7 +1,8 @@
 .payment{
+    color: #fff;
     background-color: #191919;
     width: 100%;
-    height: 1000px;
+    height: 735px;
 }
 
 .payment__logo{
@@ -9,10 +10,44 @@
 }
 
 .payment__details{
-    margin-left: 30%;
+    margin-top: 90px;
+    margin-left: 32%;
     width: 500px;
-    height: 600px;
-    text-align: center;
+    height: fit-content;
     border: 1px solid #fff;
     background-color: #191919;
+}
+
+.payment__heading{
+    text-align: center;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.payment__input .payment__button{
+    color: #fff;
+    font-size: 14px
+}
+
+.payment__button{
+    visibility: hidden;
+}
+
+.buttons{
+    margin-left: 50px;
+}
+
+.btn-selected{
+    margin-right: 7px;
+    background-color: #191919;
+    border: 1px solid #fff;
+    border-radius:2%;
+    color: #fff;
+}
+
+.btn-unselected{
+    background-color: #e50914;
+    border-radius:2%;
+    color: #fff;
+    margin-right: 7px;
 }

@@ -42,6 +42,14 @@ p {
   border-radius: 5px;
 }
 
+.footer__info{
+  display: flex;
+}
+
+.footer__mail{
+  margin-left: 100px;
+}
+
 @media (max-width: 960px) {
   .footer .footer-cols {
     grid-template-columns: repeat(2, 1fr);

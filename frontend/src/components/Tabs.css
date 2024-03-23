@@ -1,0 +1,81 @@
+.tab{
+  padding-top: 0px;
+  
+}
+.btn-t {
+  text-decoration: none;
+  display: inline-block;
+  background: #e50914;
+  color: #fff;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  outline: none;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+  border-radius: 2px;
+}
+
+.btn-lg {
+  font-size: 1rem;
+  padding: 0.8rem 1.3rem;
+  text-transform: uppercase;
+}
+
+.tab-border {
+  border-bottom: #e50914 4px solid;
+}
+
+.tab-content {
+  padding-left: 150px;
+  padding-right: 150px;
+  background: #191919;
+  color: #fff;
+}
+
+.subscription__table {
+  width: 100%;
+  margin-top: 2rem;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table-heading {
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.table-even {
+  background-color: #191919;
+}
+
+.table-odd {
+  background-color: #3d3d3d;
+}
+
+.table-cell {
+  color: #999;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+}
+
+.text-lg {
+  color: #999;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .text-lg {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+}
