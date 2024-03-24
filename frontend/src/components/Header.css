@@ -16,6 +16,7 @@
 .header__left {
   display: flex;
   align-items: center;
+margin-top: 2%;
   
 }
 
@@ -28,13 +29,15 @@
 }
 
 .header__logo {
-  height: 40px;
+  height: 70px;
   object-fit: contain;
+  margin-left: 10%;
 }
 
 .header__center {
   flex: 1;
   text-align: center;
+  margin-top: 2%;
 }
 
 /* .header__searchbar {
@@ -121,6 +124,7 @@ color: white;
 .header__right {
   display: flex;
   align-items: center;
+  margin-top: 2%;
 }
 
 .header__image {
@@ -138,7 +142,7 @@ color: white;
 }
 
 .header__right i {
-  font-size: 22px;
+  font-size:35px;
   color: white; 
   margin-right: 20px;
 }
@@ -389,4 +393,48 @@ font-size: 1em;
 }
 .hamburger__hidden::after {
   top: 13px;
+}
+
+.dropdown__menu {
+  position: absolute;
+  /* top: calc(100% + 10px);  */
+  right: 0; 
+  background-color: #fff; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  z-index: 1000; 
+  display: none;
+  background-color: rgba(25, 25, 25, 0.1); 
+  /* height: 10vh; */
+
+}
+.dropdown__menu.active {
+  display: block;
+}
+
+
+.dropdown__menu button {
+  display: block;
+  width: 100%; 
+  padding: 10px 15px; 
+  text-align: left; 
+  color: white; 
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer; 
+}
+
+.dropdown__menu button:hover {
+  background-color: rgba(255, 255, 255, 0.5); 
+  color: black;
+}
+
+
+.dropdown__menu button a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent */
+  position: relative; /* Set position to relative */
+  /* padding-right: 20px;  */
+  /* padding-top: 1px; */
 }
