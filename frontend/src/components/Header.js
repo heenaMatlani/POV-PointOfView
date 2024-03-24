@@ -2,19 +2,29 @@ import React, { useState } from "react";
 import "./Header.css";
 import logo from "../assets/logo1.jpeg";
 import { FaBars, FaSearch} from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function Header() {
 
   const [isSidebarOpen , setIsSidebarOpen] = useState(false);
   const [isExploreOpen, setIsExploreOpen] = useState(false);
-
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleSidebar = () => {
     console.log("Hamburger menu clicked");
     setIsSidebarOpen(!isSidebarOpen);
   };
   const toggleExplore = () => {
     setIsExploreOpen(!isExploreOpen);
+  };
+  
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen); // Toggle dropdown visibility
+  };
+
+  const handleLogout = () => {
+    // Handle logout logic here
+    // For example, clear user session or perform any necessary cleanup
+    console.log("Logout clicked");
   };
   
   return (
@@ -47,7 +57,12 @@ function Header() {
       </div>
       <div className="header__right">
         <Link to="/likedvideos"><i class="bi bi-heart"></i></Link>
-        <Link to="/"><i class="bi bi-person-circle"></i></Link>
+        <div className="dropdown">
+        <i class="bi bi-person-circle" onClick={toggleDropdown}></i>
+        <div className={`dropdown__menu ${isDropdownOpen ? 'active' : ''}`}>
+            <button onClick={handleLogout}><Link to= "/">Logout</Link></button>
+          </div>
+        </div>
       </div>
 
       {isSidebarOpen && (
