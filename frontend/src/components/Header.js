@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Header.css";
 import logo from "../assets/logo1.jpeg";
 import { FaBars, FaSearch} from "react-icons/fa";
@@ -27,6 +27,14 @@ function Header() {
     console.log("Logout clicked");
   };
   
+  useEffect(() => {
+    // Add or remove 'explore-open' class based on isExploreOpen state
+    if (isExploreOpen) {
+      document.body.classList.add("explore-open");
+    } else {
+      document.body.classList.remove("explore-open");
+    }
+  }, [isExploreOpen]);
   return (
     <div className={`header sticky ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       {/* <div className="header__left">
@@ -60,7 +68,7 @@ function Header() {
         <div className="dropdown">
         <i class="bi bi-person-circle" onClick={toggleDropdown}></i>
         <div className={`dropdown__menu ${isDropdownOpen ? 'active' : ''}`}>
-            <button onClick={handleLogout}><Link to= "/">Logout</Link></button>
+            <button onClick={handleLogout}><Link to= "/">Logout </Link></button>
           </div>
         </div>
       </div>
