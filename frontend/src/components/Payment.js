@@ -1,34 +1,90 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Payment.css";
 import logo from "../assets/logo1.jpeg";
-import { Link } from "react-router-dom";
+import { Link , useNavigate  } from "react-router-dom";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import axios from "axios";
 
 function Payment() {
   const [selectedOption, setSelectedOption] = useState("");
   const [paymentAmount, setPaymentAmount] = useState("");
 
+  const stripe = useStripe();
+  const elements = useElements();
+  const navigate = useNavigate();
+
   const handleOptionChange = (option) => {
     if (selectedOption === option) {
-      // If the clicked option is already selected, deselect it
       setSelectedOption("");
       setPaymentAmount("");
     } else {
-      // Otherwise, select the clicked option
       setSelectedOption(option);
       switch (option) {
         case "Basic":
           setPaymentAmount("$8.99");
+
           break;
         case "Standard":
           setPaymentAmount("$12.99");
+
           break;
         case "Premium":
           setPaymentAmount("$15.99");
+
           break;
         default:
           setPaymentAmount("");
       }
     }
+  };
+  const [succeeded, setSucceeded] = useState(false);
+  const [processing, setProcessing] = useState("");
+  const [error, setError] = useState(null);
+  const [disabled, setDisabled] = useState(true);
+  const [clientSecret, setClientSecret] = useState(true);
+
+  useEffect(() => {
+    //generate the special stripe stuff
+
+    const getClientSecret = async () => {
+      const response = await axios({
+        method: "post",
+        url: `/payment/create?total=${paymentAmount*100}`,
+      });
+
+      setClientSecret(response.data.clientSecret);
+    };
+
+    getClientSecret();
+  }, [paymentAmount]);
+
+  console.log("THE CLIENT SECRET IS >>>", clientSecret);
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setProcessing(true);
+
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then(({ paymentIntent }) => {
+        //confirmation
+
+        setSucceeded(true);
+        setError(null);
+        setProcessing(false);
+        navigate("/subscription", { replace: true });
+      });
+    
+  };
+
+  const handleChange = (event) => {
+    setDisabled(event.empty);
+    setError(event.error ? error.error.message : "");
   };
 
   return (
@@ -42,8 +98,72 @@ function Payment() {
           />
         </Link>
       </nav>
+      <form className="payment__details" onSubmit={handleSubmit}>
+        <CardElement onChange={handleChange}></CardElement>
+        <div className="col-12 buttons">
+          <div className="btn-group" role="group" aria-label="Payment Options">
+            <label
+              className={`btn btn-md mb-3 ${
+                selectedOption === "Basic" ? "btn-selected" : "btn-unselected"
+              }`}
+            >
+              <button
+                className="payment__button"
+                type="button"
+                onClick={() => handleOptionChange("Basic")}
+              />{" "}
+              Basic
+            </label>
+            <label
+              className={`btn btn-md mb-3 ${
+                selectedOption === "Standard"
+                  ? "btn-selected"
+                  : "btn-unselected"
+              }`}
+            >
+              <button
+                className="payment__button"
+                type="button"
+                onClick={() => handleOptionChange("Standard")}
+              />{" "}
+              Standard
+            </label>
+            <label
+              className={`btn btn-md mb-3 ${
+                selectedOption === "Premium" ? "btn-selected" : "btn-unselected"
+              }`}
+            >
+              <button
+                className="payment__button"
+                type="button"
+                onClick={() => handleOptionChange("Premium")}
+              />{" "}
+              Premium
+            </label>
+          </div>
+        </div>
+        <div>
+          <h3>Amount = {paymentAmount}</h3>
 
-      <form className="payment__details">
+          <button
+            disabled={processing || disabled || succeeded}
+            className="btn btn-t btn-md mb-3"
+          >
+            <span>
+              {processing ? <p> Processing</p> : "Pay"}
+            </span>
+          </button>
+        </div>
+
+        {error && <div>{error}</div>}
+      </form>
+    </div>
+  );
+}
+
+export default Payment;
+{
+  /* <form className="payment__details">
         <div className="container p-0">
           <div className="px-4">
             <p className="h8 py-3 payment__heading">Payment Details</p>
@@ -107,9 +227,5 @@ function Payment() {
             </div>
           </div>
         </div>
-      </form>
-    </div>
-  );
+      </form> */
 }
-
-export default Payment;
