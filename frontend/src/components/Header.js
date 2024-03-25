@@ -9,6 +9,8 @@ function Header() {
   const [isSidebarOpen , setIsSidebarOpen] = useState(false);
   const [isExploreOpen, setIsExploreOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const toggleSidebar = () => {
     console.log("Hamburger menu clicked");
     setIsSidebarOpen(!isSidebarOpen);
@@ -16,7 +18,7 @@ function Header() {
   const toggleExplore = () => {
     setIsExploreOpen(!isExploreOpen);
   };
-  
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen); // Toggle dropdown visibility
   };
@@ -26,7 +28,7 @@ function Header() {
     // For example, clear user session or perform any necessary cleanup
     console.log("Logout clicked");
   };
-  
+
   useEffect(() => {
     // Add or remove 'explore-open' class based on isExploreOpen state
     if (isExploreOpen) {
@@ -35,6 +37,11 @@ function Header() {
       document.body.classList.remove("explore-open");
     }
   }, [isExploreOpen]);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value); // Update search query state
+  };
+
   return (
     <div className={`header sticky ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       {/* <div className="header__left">
@@ -56,12 +63,14 @@ function Header() {
             className="header__searchbar"
             type="text"
             placeholder="Search"
+            value={searchQuery}
+            onChange={handleSearchChange}
           />
           <button className="header__searchButton">
-            <Link to="/searched"><FaSearch className="header__search" /></Link>
+            <Link to={`/searched?query=${searchQuery}`}><FaSearch className="header__search" /></Link>
           </button>
         </div>
-      
+
       </div>
       <div className="header__right">
         <Link to="/likedvideos"><i class="bi bi-heart"></i></Link>
@@ -112,7 +121,7 @@ function Header() {
             <Link to="/feedback"><li><button><i class="bi bi-chat-square-text"></i> SEND FEEDBACK</button></li></Link>
             <li><button><i class="bi bi-info-circle"></i> ABOUT</button></li>
           </ul>
-        
+
         </div>
         </div>
       )}

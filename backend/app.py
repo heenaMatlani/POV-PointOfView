@@ -127,10 +127,9 @@ def get_genre_videos():
     return jsonify(videos)
 
 
-@app.route('/searched', methods=['POST'])
+@app.route('/searched', methods=['GET'])
 def get_searched_videos():
-    search_query = request.json.get('search_query')
-
+    search_query = request.args.get('query')
     connection = establish_connection()
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM videos WHERE video_title LIKE %s", ('%' + search_query + '%',))
