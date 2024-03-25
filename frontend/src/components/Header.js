@@ -24,9 +24,23 @@ function Header() {
   };
 
   const handleLogout = () => {
-    // Handle logout logic here
-    // For example, clear user session or perform any necessary cleanup
-    console.log("Logout clicked");
+    fetch("/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("User logged out successfully");
+          // Additional logic if needed
+        } else {
+          console.error("Error logging out:", response.statusText);
+        }
+      })
+      .catch((error) => {
+        console.error("Error logging out:", error);
+      });
   };
 
   useEffect(() => {

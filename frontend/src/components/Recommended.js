@@ -5,13 +5,22 @@ import { Link } from "react-router-dom";
 
 function Recommended() {
     const [videos, setVideos] = useState([]);
+    const [loggedIn, setLoggedIn] = useState(true);
 
     useEffect(() => {
         fetch('/homepage')
             .then(response => response.json())
-            .then(data => setVideos(data))
+            .then(data => {
+                if (Array.isArray(data)) {
+                    setVideos(data);
+                } else {
+                    setVideos([]);
+                    setLoggedIn(false);
+                }
+            })
             .catch(error => console.log(error));
     }, []);
+    console.log(loggedIn);
     let channelName = "Aaj Tak"
     let views = "12"
     let age = "12"
@@ -19,7 +28,8 @@ function Recommended() {
     <div className="recommended">
       <div className="container text-center">
         <div className="row">
-                    {videos.map(video => (
+        {loggedIn ? (
+                    videos.map(video => (
                         <div key={video[0]} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                             <Link className="video-link" to="/video">
                                 <Card
@@ -31,10 +41,13 @@ function Recommended() {
                                     channelName = {channelName}
                                     views = {views}
                                     age = {age}
-                                />
-                            </Link>
-                        </div>
-                    ))}
+                                  />
+                                </Link>
+                            </div>
+                        ))
+                    ) : (
+                        <p style={{ color: "white" }}>Please log in to see videos.</p>
+                    )}
         </div>
       </div>
     </div>

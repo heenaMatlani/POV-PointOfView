@@ -49,6 +49,7 @@ def login_user():
 
     return jsonify({"message": "User logged in successfully."}), 200
 
+@app.route('/logout', methods=['POST'])
 def logout_user():
     """Endpoint to handle user logout"""
     global current_user_id
