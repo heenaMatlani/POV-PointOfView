@@ -28,7 +28,7 @@ def establish_connection(host='localhost', user='root', passwd='matlani01k', dat
 @app.route('/login', methods=['POST'])
 def login_user():
     """Function used to login the user into web application"""
-    global current_user_id, current_email
+    global current_user_id
 
     data = request.json
     email = data.get('email')
@@ -154,6 +154,25 @@ def submit_feedback():
     cursor.close()
 
     return jsonify({"message": "Feedback submitted successfully."}), 200
+
+@app.route('/likedVideos')
+def get_liked_videos():
+
+    user_id = get_current_user()
+    if user_id is None:
+        return jsonify({"message": "No user logged in."}), 400
+
+    connection = establish_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT video_id FROM liked_videos WHERE user_id LIKE %s", (user_id,))
+    video_ids = cursor.fetchall()
+    video_data = []
+    for video_id in video_ids:
+        cursor.execute("SELECT * FROM videos WHERE video_id=%s", (int(video_id),))
+        fetched_video = cursor.fetchone()
+        if fetched_video:
+            video_data.append(fetched_video)
+    return jsonify(video_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
