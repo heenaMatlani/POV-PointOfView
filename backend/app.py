@@ -1,11 +1,12 @@
-from flask import Flask, jsonify, request, redirect, url_for
+from flask import Flask, jsonify, request, redirect, url_for, session
 from flask_cors import CORS
+# from algo import get_videos
 
 app = Flask(__name__)
 CORS(app)
 
-
-def establish_connection(host='localhost', user='root', passwd='Aa@241203', database='pov'):
+current_user_id = None
+def establish_connection(host='localhost', user='root', passwd='matlani01k', database='pov'):
     """Establishes connection with local database, throws exception(not error) if connection not established"""
     import mysql.connector as cntr
     from mysql.connector import Error
@@ -27,6 +28,7 @@ def establish_connection(host='localhost', user='root', passwd='Aa@241203', data
 @app.route('/login', methods=['POST'])
 def login_user():
     """Function used to login the user into web application"""
+    global current_user_id, current_email
 
     data = request.json
     email = data.get('email')
@@ -43,12 +45,31 @@ def login_user():
     if not (user[2] == password):
         return jsonify({"message": "Invalid password."}), 400
 
+    current_user_id = user[0]
+
     return jsonify({"message": "User logged in successfully."}), 200
 
+def logout_user():
+    """Endpoint to handle user logout"""
+    global current_user_id
+
+    current_user_id = None
+    return jsonify({"message": "User logged out successfully."}), 200
+
+def get_current_user():
+    """Endpoint to retrieve current user information"""
+    global current_user_id
+
+    if current_user_id is None:
+        return None
+
+    return current_user_id
 
 @app.route('/signup', methods=['POST'])
 def signup_user():
     """Function used to create user in database"""
+
+    global current_user_id
 
     data = request.json
     email = data.get('email')
@@ -66,12 +87,16 @@ def signup_user():
     cursor.execute(insert_query, (email, password))
     connection.commit()
 
+    cursor.execute("SELECT * FROM user WHERE email_id=%s", (email,))
+    user = cursor.fetchone()
+    current_user_id = user[0]
+
     return jsonify({"message": "User signed up successfully."}), 200
 
 
 @app.route('/homepage')
 def get_videos():
-    """Function for checking video retrieval."""
+    """Dummy function for checking video retrieval."""
 
     connection = establish_connection()
     cursor = connection.cursor()
@@ -93,6 +118,34 @@ def get_genre_videos():
     cursor.close()
     return jsonify(videos)
 
+
+@app.route('/searched', methods=['POST'])
+def get_searched_videos():
+    search_query = request.json.get('search_query')
+
+    connection = establish_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM videos WHERE video_title LIKE %s", ('%' + search_query + '%',))
+    searched_videos = cursor.fetchall()
+
+    return jsonify(searched_videos)
+
+@app.route('/submit-feedback', methods=['POST'])
+def submit_feedback():
+
+    feedback_text = request.json.get('feedback_text')
+
+    user_id = get_current_user()
+    if user_id is None:
+        return jsonify({"message": "No user logged in."}), 400
+
+    connection = establish_connection()
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO feedback (user_id, feedback_text, feedback_date) VALUES (%s, %s, NOW())", (user_id, feedback_text))
+    connection.commit()
+    cursor.close()
+
+    return jsonify({"message": "Feedback submitted successfully."}), 200
 
 if __name__ == "__main__":
     app.run(debug=True)
