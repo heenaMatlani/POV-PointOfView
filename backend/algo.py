@@ -39,7 +39,9 @@ def get_random_videos(conn, n, videos):
                     break
 
     cursor.close()
-    return list(random_videos)
+    random_videos = list(random_videos)
+    random.shuffle(random_videos)
+    return random_videos
 
 def get_videos(conn, user_id, num_videos):
     """Function used to return random or recommended video based on user history"""
@@ -54,5 +56,5 @@ def get_videos(conn, user_id, num_videos):
 
     if count < num_videos:
         videos.extend(get_random_videos(conn, num_videos-count, videos))
-
+    random.shuffle(videos)
     return videos

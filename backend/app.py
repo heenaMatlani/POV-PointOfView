@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request, redirect, url_for, session
 from flask_cors import CORS
-# from algo import get_videos
+from algo import get_videos
 
 app = Flask(__name__)
 CORS(app)
@@ -95,15 +95,23 @@ def signup_user():
 
 
 @app.route('/homepage')
-def get_videos():
-    """Dummy function for checking video retrieval."""
+def get_videos_list():
+    """Function for video list retrieval."""
+
+    user_id = get_current_user()
+    if user_id is None:
+        return jsonify({"message": "No user logged in."}), 400
 
     connection = establish_connection()
+    video_ids = get_videos(connection, user_id, 36)
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM videos")
-    videos = cursor.fetchall()
-    cursor.close()
-    return jsonify(videos)
+    video_data = []
+    for video_id in video_ids:
+        cursor.execute("SELECT * FROM videos WHERE video_id=%s", (int(video_id),))
+        fetched_video = cursor.fetchone()
+        if fetched_video:
+            video_data.append(fetched_video)
+    return jsonify(video_data)
 
 @app.route('/explore', methods=['POST'])
 def get_genre_videos():
