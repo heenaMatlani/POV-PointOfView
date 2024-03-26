@@ -20,8 +20,6 @@ function Recommended() {
             })
             .catch(error => console.log(error));
     }, []);
-    console.log(loggedIn);
-    let channelName = "Aaj Tak"
     let views = "12"
     let age = "12"
     return (
@@ -36,9 +34,9 @@ function Recommended() {
                                     className="recommended-card"
                                     video={video[2]}
                                     thumbnail={video[3]}
-                                    channel={'https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg'}
+                                    channel={video[9]}
                                     title={video[6]}
-                                    channelName = {channelName}
+                                    channelName = {video[8]}
                                     views = {views}
                                     age = {age}
                                   />

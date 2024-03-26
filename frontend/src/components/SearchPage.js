@@ -28,14 +28,9 @@ function SearchPage() {
     }, [location.search]);
 
 
-    let channel =
-    "https://heena0708.s3.ap-south-1.amazonaws.com/icons/ABPNews.jpeg";
-
   let views = "12"
 
   let age = "13"
-
-  let cn="ABP News"
   return (
     <div className='search'>
       <Header/>
@@ -45,9 +40,9 @@ function SearchPage() {
             <HorizontalCard
               video={video[2]}
               thumbnail={video[3]}
-              channel={'https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg'}
+              channel={video[9]}
               title={video[6]}
-              channelName = {cn}
+              channelName = {video[8]}
               views = {views}
               age={age}
               channelDescription={video[5]}

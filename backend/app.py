@@ -100,6 +100,7 @@ def get_videos_list():
     """Function for video list retrieval."""
 
     user_id = get_current_user()
+    print(user_id)
     if user_id is None:
         return jsonify({"message": "No user logged in."}), 400
 
@@ -108,7 +109,12 @@ def get_videos_list():
     cursor = connection.cursor()
     video_data = []
     for video_id in video_ids:
-        cursor.execute("SELECT * FROM videos WHERE video_id=%s", (int(video_id),))
+        cursor.execute("""
+            SELECT v.*, c.channel_name, c.channel_icon 
+            FROM videos v 
+            INNER JOIN channel c ON v.channel_id = c.channel_id
+            WHERE v.video_id = %s
+        """, (int(video_id),))
         fetched_video = cursor.fetchone()
         if fetched_video:
             video_data.append(fetched_video)
@@ -133,7 +139,8 @@ def get_searched_videos():
     search_query = request.args.get('query')
     connection = establish_connection()
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM videos WHERE video_title LIKE %s", ('%' + search_query + '%',))
+    cursor.execute("SELECT v.*, c.channel_name, c.channel_icon FROM videos v INNER JOIN channel c ON v.channel_id = "
+                   "c.channel_id WHERE v.video_title LIKE %s", ('%' + search_query + '%',))
     searched_videos = cursor.fetchall()
 
     return jsonify(searched_videos)
