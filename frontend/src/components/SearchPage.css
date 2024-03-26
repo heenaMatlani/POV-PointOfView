@@ -1,10 +1,11 @@
-.search{
-    background-color: #191919;
+.search {
+  background-color: #191919;
 }
 
-.search__content{
-    margin-top: 40px;
+.search__content {
+  padding-left: 60px;
+  margin-top: 40px;
 }
-.search__link{
-    text-decoration: none;
+.search__link {
+  text-decoration: none;
 }
