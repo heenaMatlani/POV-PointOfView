@@ -6,7 +6,6 @@ import HorizontalCard from "./HorizontalCard";
 import thumbnail from '../assets/thumbnail.png'
 
 function Video() {
-  // Get the videoId and videoUrl from URL
   const { videoId, videoUrl } = useParams();
   const decodedVideoUrl = decodeURIComponent(videoUrl);
   let title = "Go ferrari and particularly carlos! 🏎️"
@@ -20,12 +19,17 @@ function Video() {
      <div className="video__main">
         {decodedVideoUrl && (
           <div className="video__player">
-            <video className="video__" controls>
+            <video className="video__play" controls width='100%'>
               <source src={decodedVideoUrl} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
         )}
+
+        <div className="video__description">
+          
+
+        </div>
       </div>
       <div className="video__sideRecom">
       <HorizontalCard
