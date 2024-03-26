@@ -37,7 +37,7 @@ function SearchPage() {
       <div className="search__content">
       {videos.map(video => (
           <Link key={video[0]} className='search__link' to="/video">
-            <HorizontalCard
+            <HorizontalCard className="search__card"
               video={video[2]}
               thumbnail={video[3]}
               channel={video[9]}
