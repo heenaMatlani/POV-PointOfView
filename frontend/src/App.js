@@ -10,7 +10,7 @@ import Feedback from "./components/Feedback";
 import SearchPage from "./components/SearchPage";
 import Subscription from "./components/Subscription";
 import Payment from "./components/Payment";
-import {loadStripe} from "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 const promise = loadStripe("pk_test_51OxouLSGqkoequIlL3eNXirRn8pXldvul43e1JTQPEFjp6AySIlcBPVCPvj8Mjk2cU1X63ux4vLv1hpQwF0XvZO200r0TFZy54");
@@ -20,7 +20,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/homepage" element={<Homepage />} />
-        <Route path="/video" element={<Videopage />} />
+        <Route path="/video/:videoId/:videoUrl" element={<Videopage />} />
         <Route path="/likedvideos" element={<LikedVideos />} />
         <Route path="/" element={<LoginPage />} />
         <Route path="/channels" element={<Channel />} />

@@ -31,7 +31,7 @@ function Recommended() {
         {loggedIn ? (
                     videos.map(video => (
                         <div key={video[0]} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                            <Link className="video-link" to="/video">
+                            <Link className="video-link" to={`/video/${video[0]}/${encodeURIComponent(video[2])}`}>
                                 <Card
                                     className="recommended-card"
                                     video={video[2]}
