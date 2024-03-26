@@ -7,6 +7,7 @@ import { FaUser,FaLock } from 'react-icons/fa';
 const LoginPage = () => {
   const [isSignup, setIsSignUp] = useState(false);
   const [email,setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password,setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -70,14 +71,23 @@ const LoginPage = () => {
       <div className='heading__pov'>
         <h1 className='heading'>POV</h1>
         <h2 className='subheading'>Point Of View</h2>
+        <div className='channel-link'>
+       <p><Link to="/subscription">Are you a channel? </Link></p>
+      </div>
       </div>
       <div className='login__right'>
-      <form onSubmit={handleSubmit} style={{ height: passwordError ? '550px' : (isSignup ? '500px' : '400px') }}>
+      <form onSubmit={handleSubmit} style={{ height: passwordError ? '630px' : (isSignup ? '550px' : '400px') }}>
         <h1>{isSignup ?  'Sign Up' : 'Login'}</h1>
         <div className='input-box'>
         <input type='email' placeholder='E-mail' required value={email} onChange={(e) => setEmail(e.target.value)}/>
         <FaUser className='login__icon'/>
         </div>
+        {isSignup && (
+            <div className='input-box'>
+              <input type='text' placeholder='Username' required value={username} onChange={(e) => setUsername(e.target.value)} />
+              <FaUser className='login__icon' />
+            </div>
+          )}
         <div className='input-box'>
         <input type='password' placeholder='Password' required value={password} onChange={(e) => setPassword(e.target.value)}/>
         <FaLock className='login__icon'/>
