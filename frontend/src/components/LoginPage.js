@@ -111,9 +111,6 @@ const LoginPage = () => {
           <p>{isSignup ? 'Already have an account?' : "Don't have an account?"}<a href="#" onClick={toggleSignup}>{isSignup ? 'Login' : 'Sign Up'}</a></p>
         </div>
       </form>
-      <div className='channel-link'>
-       <p><Link to="/subscription">Are you a channel? </Link></p>
-      </div>
 
       </div>
     </div>
