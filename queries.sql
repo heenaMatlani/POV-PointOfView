@@ -341,3 +341,10 @@ JOIN videos v ON lv.video_id = v.video_id;
 INSERT INTO comments (video_id, comment_text, user_id, comment_date)
 SELECT wh.video_id, 'Good video ! ', wh.user_id, CURRENT_DATE()
 FROM watch_history wh;
+
+ALTER TABLE user
+ADD COLUMN username VARCHAR(255) UNIQUE;
+
+UPDATE user
+SET username = CONCAT(
+    UPPER(SUBSTRING_INDEX(SUBSTRING_INDEX(email_id, '.', 1), '@', 1)));
