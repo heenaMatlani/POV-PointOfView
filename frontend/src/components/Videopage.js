@@ -9,6 +9,9 @@ import Comment from "./Comment";
 function Video() {
   const { videoId } = useParams();
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const [comment, setComment] = useState("");
+  const [commentsList, setCommentsList] = useState([]);
+  const [commentCount, setCommentCount] = useState(232); // Initial comment count
   let video_url = "https://heena0708.s3.ap-south-1.amazonaws.com/videos/9.mp4";
   let title = "Go ferrari and particularly carlos!";
   let cn = "Aaj Tak";
@@ -41,11 +44,21 @@ Main channel:  @HopeScope
  
 
  / hopescope  `;
-  let comment_count = 232;
-  let username = "Aarushi";
-  let c = "When I watched Tracy for first time , I wrote she is Judith Polgar of COB and she proved my words to be true . Congratulations Tracy . But was rooting for most disciplined student who eventually never wins .";
+
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
+  };
+
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  const handleCommentSubmit = () => {
+    if (comment.trim() !== "") {
+      setCommentsList([...commentsList, comment]);
+      setCommentCount(commentCount + 1); // Increment comment count
+      setComment(""); // Clear input field after submission
+    }
   };
 
   return (
@@ -88,27 +101,36 @@ Main channel:  @HopeScope
             </div>
           </div>
           <div className="video__comments">
-            <p className="video__commentHead">{comment_count} Comments</p>
+            <p className="video__commentHead">{commentCount} Comments</p>
             <div className="video__addComment">
-            <div className="comment__icon"><i class="bi bi-person-circle video__icon"></i></div>
-            <div>
-            <div className="comment__text"><input type="text" className="video__comment" placeholder="Add Comment"/></div>
-            <button className="btn comment__button">Comment</button>
-            </div>
+              <div className="comment__icon">
+                <i class="bi bi-person-circle video__icon"></i>
+              </div>
+              <div>
+                <div className="comment__text">
+                  <input
+                    type="text"
+                    className="video__comment"
+                    placeholder="Add Comment"
+                    value={comment}
+                    onChange={handleCommentChange}
+                  />
+                </div>
+                <button className="btn comment__button" onClick={handleCommentSubmit}>
+                  Comment
+                </button>
+              </div>
             </div>
             <div className="video__prevComments">
-              <Comment username = "Amritjot" commentVal = {c}/>
-              <Comment username = "Heena" commentVal = "When I watched Tracy for first time."/>
-              <Comment username = "Amritjot" commentVal = {c}/>
-              <Comment username = "Aarushi" commentVal = "Interesting topic!"/>
-              <Comment username = "Amritjot" commentVal = {c}/>
-              <Comment username = "Heena" commentVal = {c}/>
+              {commentsList.map((comment, index) => (
+                <Comment key={index} username="Aarushi" commentVal={comment} />
+              ))}
             </div>
           </div>
         </div>
 
         <div className="video__sideRecom">
-          <SideCard
+        <SideCard
             video=""
             thumbnail={thumbnail}
             channel={
@@ -120,7 +142,7 @@ Main channel:  @HopeScope
             age={age}
             channelDescription=""
           />
-          <SideCard
+        <SideCard
             video=""
             thumbnail={thumbnail}
             channel={
@@ -132,7 +154,7 @@ Main channel:  @HopeScope
             age={age}
             channelDescription=""
           />
-          <SideCard
+        <SideCard
             video=""
             thumbnail={thumbnail}
             channel={
@@ -144,7 +166,7 @@ Main channel:  @HopeScope
             age={age}
             channelDescription=""
           />
-          <SideCard
+        <SideCard
             video=""
             thumbnail={thumbnail}
             channel={
@@ -156,7 +178,7 @@ Main channel:  @HopeScope
             age={age}
             channelDescription=""
           />
-          <SideCard
+        <SideCard
             video=""
             thumbnail={thumbnail}
             channel={
@@ -168,7 +190,7 @@ Main channel:  @HopeScope
             age={age}
             channelDescription=""
           />
-          <SideCard
+        <SideCard
             video=""
             thumbnail={thumbnail}
             channel={
@@ -180,7 +202,7 @@ Main channel:  @HopeScope
             age={age}
             channelDescription=""
           />
-          <SideCard
+        <SideCard
             video=""
             thumbnail={thumbnail}
             channel={
@@ -192,7 +214,7 @@ Main channel:  @HopeScope
             age={age}
             channelDescription=""
           />
-          <SideCard
+        <SideCard
             video=""
             thumbnail={thumbnail}
             channel={
