@@ -1,12 +1,13 @@
 from flask import Flask, jsonify, request, redirect, url_for, session
 from flask_cors import CORS
 from algo import get_videos
+from video import calculate_age, get_video_views
 
 app = Flask(__name__)
 CORS(app)
 
 current_user_id = None
-def establish_connection(host='localhost', user='root', passwd='Amritjot@1232', database='pov'):
+def establish_connection(host='localhost', user='root', passwd='matlani01k', database='pov'):
     """Establishes connection with local database, throws exception(not error) if connection not established"""
     import mysql.connector as cntr
     from mysql.connector import Error
@@ -117,6 +118,10 @@ def get_videos_list():
         """, (int(video_id),))
         fetched_video = cursor.fetchone()
         if fetched_video:
+            fetched_video = list(fetched_video)
+            fetched_video.append(calculate_age(fetched_video[4]))
+            fetched_video.append(get_video_views(connection,int(video_id)))
+            fetched_video = tuple(fetched_video)
             video_data.append(fetched_video)
     return jsonify(video_data)
 
@@ -142,8 +147,14 @@ def get_searched_videos():
     cursor.execute("SELECT v.*, c.channel_name, c.channel_icon FROM videos v INNER JOIN channel c ON v.channel_id = "
                    "c.channel_id WHERE v.video_title LIKE %s", ('%' + search_query + '%',))
     searched_videos = cursor.fetchall()
-
-    return jsonify(searched_videos)
+    modified_searched_videos = []
+    if searched_videos:
+        for video in searched_videos:
+            video = list(video)
+            video.append(calculate_age(video[4]))
+            video.append(get_video_views(connection, video[0]))
+            modified_searched_videos.append(tuple(video))
+    return jsonify(modified_searched_videos)
 
 @app.route('/submit-feedback', methods=['POST'])
 def submit_feedback():

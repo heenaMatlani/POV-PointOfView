@@ -43,8 +43,8 @@ function SearchPage() {
               channel={video[9]}
               title={video[6]}
               channelName = {video[8]}
-              views = {views}
-              age={age}
+                                    views = {video[11]}
+                                    age = {video[10]}
               channelDescription={video[5]}
             />
           </Link>

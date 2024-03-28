@@ -25,7 +25,7 @@ function Card(props) {
           <p className="card__channelName">{props.channelName}</p>
           <div className="card__details card__info">
             <p className="card__views">{props.views} lakh views •</p>
-            <p className="card__age">{props.age} months ago</p>
+            <p className="card__age">{props.age}</p>
           </div>
         </div>
       </div>

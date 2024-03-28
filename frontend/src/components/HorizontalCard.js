@@ -10,7 +10,7 @@ function HorizontalCard(props) {
         <p className="hcard__text">{props.title}</p>
         <div className="hcard__details">
           <p className="hcard__views">{props.views} lakh views •</p>
-          <p className="hcard__age">{props.age} months ago</p>
+          <p className="hcard__age">{props.age}</p>
         </div>
         <div className="hcard__details">
           <img src={props.channel} className="hcard__channel" alt="channel" />

@@ -20,8 +20,7 @@ function Recommended() {
             })
             .catch(error => console.log(error));
     }, []);
-    let views = "12"
-    let age = "12"
+
     return (
     <div className="recommended">
       <div className="container text-center">
@@ -37,8 +36,8 @@ function Recommended() {
                                     channel={video[9]}
                                     title={video[6]}
                                     channelName = {video[8]}
-                                    views = {views}
-                                    age = {age}
+                                    views = {video[11]}
+                                    age = {video[10]}
                                   />
                                 </Link>
                             </div>
