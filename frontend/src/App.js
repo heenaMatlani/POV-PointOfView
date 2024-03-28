@@ -20,7 +20,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/homepage" element={<Homepage />} />
-        <Route path="/video/:videoId/:videoUrl" element={<Videopage />} />
+        <Route path="/video/:videoId" element={<Videopage />} />
         <Route path="/likedvideos" element={<LikedVideos />} />
         <Route path="/" element={<LoginPage />} />
         <Route path="/channels" element={<Channel />} />
