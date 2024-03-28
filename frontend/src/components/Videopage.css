@@ -1,7 +1,6 @@
 .video {
   background-color: #191919;
   width: 100%;
-  height: 7000px;
 }
 
 .video__information {
@@ -47,7 +46,7 @@
 
 .video__text {
   font-size: 22px;
-  margin-bottom: 5px; /* Remove default margin */
+  margin-bottom: 5px; 
 }
 
 .video__details {
@@ -80,10 +79,68 @@
 .video__channelDescription {
   font-size: 17px;
   color: #aba3a3;
-  white-space: pre;
+  white-space: pre-line; 
 }
 
 .video__grey {
   padding: 12px;
   background-color: #2d2b2b;
+}
+
+.video__showMore{
+  font-weight: 700;
+}
+
+.video__commentHead{
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.video__addComment{
+  color: #fff;
+  display: flex;
+  height: 70px;
+}
+
+.video__icon{
+  font-size: 40px;
+}
+
+.video__comments{
+  width: 900px;
+}
+
+.video__comment {
+  color: #fff;
+  margin-left: 10px;
+  width: 850px;
+  background-color: #191919;
+  border: none;
+  border-bottom: 1px solid #aba3a3; /* Initial underline */
+  transition: border-bottom-color 0.3s, border-bottom-width 0.3s; /* Transition for color and width */
+}
+
+.video__comment:focus {
+  border: none;
+  color: #fff;
+}
+
+.comment__text{
+  margin-top: 10px;
+}
+
+.comment__text::placeholder{
+  font-size: 27px;
+}
+
+.comment__button{
+  margin-left: 760px;
+  margin-top: 15px;
+  border-color: #fff;
+  color: #fff;
+}
+
+.video__prevComments{
+  margin-top: 20px;
 }
