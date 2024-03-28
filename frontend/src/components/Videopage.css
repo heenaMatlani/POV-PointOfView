@@ -32,7 +32,7 @@
 
 .video__title {
   font-weight: 600;
-  font-size: 27px;
+  font-size: 25px;
   color: #fff;
 }
 
@@ -75,6 +75,18 @@
   color: #aba3a3;
   margin-left: 10px;
 }
+
+.video__likebutton{
+  margin-left: 700px;
+  font-size: 40px;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.liked{
+  color: rgb(185, 8, 8);
+}
+
 
 .video__channelDescription {
   font-size: 17px;
