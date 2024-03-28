@@ -1,11 +1,11 @@
 import React from "react";
 import "./Channel.css";
 import Header from "./Header";
+import ChannelCard  from "./ChannelCard";
 function Channel() {
   return (
     <div>
       <Header />
-      <h1>channel</h1>
     </div>
   );
 }
