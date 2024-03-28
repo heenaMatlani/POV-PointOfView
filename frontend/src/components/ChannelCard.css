@@ -1,0 +1,72 @@
+/* HorizontalCard.css */
+.ccard {
+  background-color: #191919;
+  color: #fff;
+  width: 90%;
+  height: 220px;
+  display: flex;
+  padding: 10px;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease;
+}
+
+.ccard:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 20px #d92929;
+}
+
+.ccard__thumbnail {
+  margin-right: 20px;
+}
+
+.ccard__thumbnail .ccard__img {
+  width: 370px;
+  height: 200px;
+}
+
+.ccard__description {
+  flex-grow: 1; /* Allow description to grow and take remaining space */
+}
+
+.ccard__channel {
+  width: 33px;
+  height: 33px;
+  border: 0.5px black;
+  border-radius: 50%;
+  margin-bottom: 5px; /* Add spacing between channel logo and description */
+}
+
+.ccard__text {
+  font-size: 22px;
+  margin-bottom: 5px; /* Remove default margin */
+}
+
+.ccard__details {
+  display: flex;
+  margin-bottom: 7px;
+}
+
+.ccard__views {
+  font-size: 15px;
+  color: #aba3a3;
+  margin-right: 2px;
+  margin-bottom: 0;
+}
+.ccard__age {
+  font-size: 15px;
+  color: #aba3a3;
+  margin-left: 2px;
+  margin-bottom: 0px;
+}
+
+.ccard__channelName {
+  margin-top: 3px;
+  font-size: 15px;
+  color: #aba3a3;
+  margin-left: 10px;
+}
+
+.ccard__channelDescription {
+  font-size: 15px;
+  color: #aba3a3;
+}
