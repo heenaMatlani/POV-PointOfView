@@ -76,7 +76,7 @@ def signup_user():
     data = request.json
     email = data.get('email')
     password = data.get('password')
-
+    username = data.get('username')
     connection = establish_connection()
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM user WHERE email_id=%s", (email,))
@@ -85,8 +85,8 @@ def signup_user():
     if user:
         return jsonify({"message": "User already exists. Please log in."}), 400
 
-    insert_query = "INSERT INTO user (email_id, password) VALUES (%s, %s)"
-    cursor.execute(insert_query, (email, password))
+    insert_query = "INSERT INTO user (email_id, password,username) VALUES (%s, %s,%s)"
+    cursor.execute(insert_query, (email, password, username))
     connection.commit()
 
     cursor.execute("SELECT * FROM user WHERE email_id=%s", (email,))
@@ -101,7 +101,6 @@ def get_videos_list():
     """Function for video list retrieval."""
 
     user_id = get_current_user()
-    print(user_id)
     if user_id is None:
         return jsonify({"message": "No user logged in."}), 400
 

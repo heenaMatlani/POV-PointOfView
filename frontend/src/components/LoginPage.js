@@ -35,13 +35,19 @@ const LoginPage = () => {
     if (isSignup) {
       url = 'http://localhost:5000/signup';
     }
-
+    let sending_data = '';
+      if (isSignup){
+      sending_data = JSON.stringify({ email, password, username});
+      }
+      else{
+      sending_data = JSON.stringify({ email, password });
+      }
     const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }),
+      body: sending_data,
     });
     const data = await response.json();
     console.log(data);
