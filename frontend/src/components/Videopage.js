@@ -11,11 +11,13 @@ function Video() {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [comment, setComment] = useState("");
   const [commentsList, setCommentsList] = useState([]);
-  const [commentCount, setCommentCount] = useState(232); // Initial comment count
+  const [commentCount, setCommentCount] = useState(0); // Initial comment count
+  const [liked, setLiked] = useState(false); // State for like button
   let video_url = "https://heena0708.s3.ap-south-1.amazonaws.com/videos/9.mp4";
-  let title = "Go ferrari and particularly carlos!";
+  let title = "Samay Raina's Insane Miss | COB: Homecoming | Samay vs Tracy";
   let cn = "Aaj Tak";
   let views = "12";
+  let like_count = 105;
   let age = "11 months ago";
   let video_description = `Testing weirdly realistic SLIME FOOD cooking kits from GTCreations Slime shop that I found on tiktok.
 Pls subscribe :)
@@ -61,6 +63,10 @@ Main channel:  @HopeScope
     }
   };
 
+  const handleLikeClick = () => {
+    setLiked(!liked); // Toggle like status
+  };
+
   return (
     <div className="video">
       <Header />
@@ -84,6 +90,9 @@ Main channel:  @HopeScope
                 alt="channel"
               />
               <p className="video__channelName">{cn}</p>
+              <button className={`btn video__likebutton ${liked ? "liked" : ""}`} onClick={handleLikeClick}>
+                <i className="fa fa-thumbs-up video__icon"></i>
+              </button>
             </div>
             <div className="video__grey">
               <div className="video__details">
@@ -104,7 +113,7 @@ Main channel:  @HopeScope
             <p className="video__commentHead">{commentCount} Comments</p>
             <div className="video__addComment">
               <div className="comment__icon">
-                <i class="bi bi-person-circle video__icon"></i>
+                <i className="bi bi-person-circle video__icon"></i>
               </div>
               <div>
                 <div className="comment__text">
@@ -130,30 +139,6 @@ Main channel:  @HopeScope
         </div>
 
         <div className="video__sideRecom">
-        <SideCard
-            video=""
-            thumbnail={thumbnail}
-            channel={
-              "https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg"
-            }
-            title={title}
-            channelName={cn}
-            views={views}
-            age={age}
-            channelDescription=""
-          />
-        <SideCard
-            video=""
-            thumbnail={thumbnail}
-            channel={
-              "https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg"
-            }
-            title={title}
-            channelName={cn}
-            views={views}
-            age={age}
-            channelDescription=""
-          />
         <SideCard
             video=""
             thumbnail={thumbnail}
