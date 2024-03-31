@@ -1,13 +1,13 @@
 from flask import Flask, jsonify, request, redirect, url_for, session
 from flask_cors import CORS
 from algo import get_videos
-from video import calculate_age, get_video_views
+from video import calculate_age, get_video_views, video_details
 
 app = Flask(__name__)
 CORS(app)
 
 current_user_id = None
-def establish_connection(host='localhost', user='root', passwd='Aa@241203', database='pov'):
+def establish_connection(host='localhost', user='root', passwd='matlani01k', database='pov'):
     """Establishes connection with local database, throws exception(not error) if connection not established"""
     import mysql.connector as cntr
     from mysql.connector import Error
@@ -190,6 +190,63 @@ def get_liked_videos():
         if fetched_video:
             video_data.append(fetched_video)
     return jsonify(video_data)
+
+
+@app.route('/toggle-like', methods=['POST'])
+def toggle_like():
+    user_id = get_current_user()
+    if user_id is None:
+        return jsonify({"message": "No user logged in."}), 400
+
+    data = request.json
+    video_id = data.get('video_id')
+
+    connection = establish_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT COUNT(*) FROM liked_videos WHERE user_id = %s AND video_id = %s", (user_id, video_id))
+    count = cursor.fetchone()[0]
+
+    if count > 0:
+        cursor.execute("DELETE FROM liked_videos WHERE user_id = %s AND video_id = %s", (user_id, video_id))
+        connection.commit()
+        return jsonify({"message": "Like removed successfully."}), 200
+    else:
+        cursor.execute("INSERT INTO liked_videos (user_id, video_id) VALUES (%s, %s)", (user_id, video_id))
+        connection.commit()
+        return jsonify({"message": "Like added successfully."}), 200
+
+@app.route('/submit-comment', methods=['POST'])
+def submit_comment():
+    user_id = get_current_user()
+    if user_id is None:
+        return jsonify({"message": "No user logged in."}), 400
+
+    data = request.json
+    video_id = data.get('video_id')
+    comment_text = data.get('comment')
+
+    connection = establish_connection()
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO comments (video_id, comment_text, user_id, comment_date) VALUES (%s, %s, %s, NOW())",
+                   (video_id, comment_text, user_id))
+    connection.commit()
+
+    return jsonify({"message": "Comment added successfully."}), 200
+
+@app.route('/video/<int:video_id>', methods=['GET'])
+def get_video_details(video_id):
+    """Endpoint to get video details."""
+    user_id = get_current_user()
+    if user_id is None:
+        return jsonify({"message": "No user logged in."}), 400
+
+    connection = establish_connection()
+    video_data = video_details(connection, video_id, user_id)
+
+    if video_data:
+        return jsonify(video_data), 200
+    else:
+        return jsonify({"message": "Video not found."}), 404
 
 if __name__ == "__main__":
     app.run(debug=True)

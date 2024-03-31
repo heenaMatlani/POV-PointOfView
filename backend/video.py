@@ -1,4 +1,5 @@
 from datetime import datetime
+from algo import get_videos
 
 def format_age(age):
     """Format the video age as 'X days ago', 'X months ago', or 'X years ago'."""
@@ -37,14 +38,16 @@ def is_video_liked(connection, user_id, video_id):
     count = cursor.fetchone()[0]
     return count > 0
 
-def update_watch_history(connection, user_id, video_id, genre, views):
+def update_watch_history(connection, user_id, video_id, genre):
     """Update the user's watch history for a video."""
     cursor = connection.cursor()
     cursor.execute("""
-        INSERT INTO watch_history (user_id, video_id, genre, views) VALUES (%s, %s, %s, %s)
-        ON DUPLICATE KEY UPDATE views = views + %s
-    """, (user_id, video_id, genre, views, views))
+        INSERT INTO watch_history (user_id, video_id, genre, views) 
+        VALUES (%s, %s, %s, 1)
+        ON DUPLICATE KEY UPDATE views = views + 1
+    """, (user_id, video_id, genre))
     connection.commit()
+
 
 
 def get_video_views(connection, video_id):
@@ -55,3 +58,48 @@ def get_video_views(connection, video_id):
     """, (video_id,))
     total_views = cursor.fetchone()[0]
     return total_views if total_views else 1
+
+def get_like_count(connection, video_id):
+    """Retrieve the total number of likes for a video."""
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT COUNT(*) FROM liked_videos WHERE video_id = %s
+    """, (video_id,))
+    like_count = cursor.fetchone()[0]
+    return like_count
+
+def video_details(connection, video_id, user_id):
+    """Retrieve video details along with comments and like status."""
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT v.*, c.channel_name, c.channel_icon 
+        FROM videos v 
+        INNER JOIN channel c ON v.channel_id = c.channel_id
+        WHERE v.video_id = %s
+    """, (video_id,))
+    video_details = cursor.fetchone()
+
+    if not video_details:
+        return None
+
+    update_watch_history(connection, user_id, video_id, video_details[7])
+
+    video_age = calculate_age(video_details[4])
+    video_views = get_video_views(connection, video_id)
+    is_liked = is_video_liked(connection, user_id, video_id)
+    comments = get_comments(connection, video_id)
+    side_recommendations = get_videos(connection, user_id, 10)
+    like_count = get_like_count(connection, video_id)
+
+    video_data = {
+        "video_details": video_details,
+        "video_age": video_age,
+        "video_views": video_views,
+        "is_liked": is_liked,
+        "comments": comments,
+        "side_recommendations": side_recommendations,
+        "like_count": like_count
+    }
+    return video_data
+
