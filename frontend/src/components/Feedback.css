@@ -5,19 +5,24 @@
 
   
   .feedback-container {
-    max-width: 600px;
-    height: 400px;
-    margin-top: 90px;
-    margin-left:33%;
-    background-color: #f9f9f9;
+    max-width: 700px;
+    height: 500px;
+    margin-top: 50px;
+    margin-left:30%;
+    background-color: rgba(0,0,0,0.3);
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 20px;
+    border: 1px solid red;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
   .feedback-container h2 {
-    margin-bottom: 20px;
+    font-size: 50px;
+    margin-bottom: 50px;
     text-align: center;
+    /* color: aliceblue; */
+    color: red;
+    text-transform: uppercase;
   }
   .star-rating {
     display: flex; /* Display stars in a row */
@@ -26,6 +31,8 @@
   }
   .label-row {
     margin-bottom: 10px;
+    font-size: 25px;
+    color: white;
   }
   
   .stars-row {
@@ -76,9 +83,12 @@
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
-    resize: vertical;
+    background-color: transparent;
+    color: white;
   }
-  
+  textarea:focus {
+    /* background-color: rgba(255, 0, 0, 0.1); Add a slight background blur effect on focus */
+  }
   button {
     padding: 10px 20px;
     background-color: red;
@@ -91,7 +101,5 @@
   .submit-button{
     margin-left: 40%;
   }
-  button:hover {
-    /* background-color: #0056b3; */
-  }
+
   
