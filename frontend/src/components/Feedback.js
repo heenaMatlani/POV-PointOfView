@@ -53,7 +53,7 @@ function Feedback() {
         {/* Star rating */}
         <div className='star-rating'>
           <div className='label-row'>
-          <label>Shape our platform with your feedback. Share now!"</label>
+          <label>Shape our platform with your feedback. Share now!</label>
           </div>
           <div className='stars-row'>
           {[...Array(5)].map((_, index) => {
