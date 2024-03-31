@@ -8,10 +8,25 @@ function Feedback() {
   const [rating, setRating] = useState(0);
   // State to store the feedback text
   const [feedbackText, setFeedbackText] = useState('');
+  const [filledStars, setFilledStars] = useState([false, false, false, false, false]);
 
   // Function to handle changes in star rating
   const handleRatingChange = (value) => {
-    setRating(value);
+    // If the clicked star is already filled, reset rating to 0
+    const updatedFilledStars = filledStars.map((_, index) => {
+      if (index === value - 1) {
+        return !filledStars[index];
+      }
+      return index < value - 1;
+    });
+    setFilledStars(updatedFilledStars);
+  
+    // If the clicked star is already filled, reset rating to 0
+    if (value === rating) {
+      setRating(0);
+    } else {
+      setRating(value);
+    }
   };
 
 
@@ -51,10 +66,11 @@ function Feedback() {
                   value={ratingValue}
                   onClick={() => handleRatingChange(ratingValue)}
                 />
-                <FaStar
-                  className='star'
-                  color={ratingValue <= rating ? '#ffc107' : '#000000'}
-                />
+                {ratingValue <= rating ? (
+                    <i className="bi bi-star-fill star" style={{color: 'red'}}></i>
+                  ) : (
+                    <i className="bi bi-star star" style={{color: '#000000'}}></i>
+                  )}
               </label>
             );
           })}
