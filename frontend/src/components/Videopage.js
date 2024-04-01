@@ -7,6 +7,7 @@ import SideCard from "./SideCard";
 import Comment from "./Comment";
 import axios from "axios";
 
+
 function Video() {
   const { videoId } = useParams();
   console.log(videoId);
