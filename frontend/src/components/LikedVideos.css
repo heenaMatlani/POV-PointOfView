@@ -1,0 +1,46 @@
+.likedVideos{
+    width: 100%;
+    height: 100%;
+    background-color:#191919;
+    transition: width 0.3s ease; 
+    text-decoration: none;
+}
+
+.video-link{
+    text-decoration: none;
+}  
+
+
+@media (min-width: 576px) { 
+    .card{
+        width: 15rem;
+        margin: 10px;
+    }
+}
+
+@media (min-width: 768px) { 
+
+    .card{
+        width: 14rem;
+        margin: 10px;
+    }
+ }
+
+@media (min-width: 992px) { 
+    .card{
+        width: 14rem;
+        margin: 10px;
+    }
+ }
+@media (min-width: 1200px) { 
+    .card{
+        width: 17rem;
+        margin: 10px;
+    }
+ }
+@media (min-width: 1400px) { 
+    .card{
+        width: 19.5rem;
+        margin: 20px;
+    }
+ } 
