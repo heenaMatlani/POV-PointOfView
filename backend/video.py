@@ -89,17 +89,25 @@ def video_details(connection, video_id, user_id):
     video_views = get_video_views(connection, video_id)
     is_liked = is_video_liked(connection, user_id, video_id)
     comments = get_comments(connection, video_id)
-    side_recommendations = get_videos(connection, user_id, 10)
-    like_count = get_like_count(connection, video_id)
+    side_recom = get_videos(connection, user_id, 10)
+    side_recommendations = []
+    for id in side_recom:
+        cursor.execute("""
+            SELECT v.*, c.channel_name, c.channel_icon 
+            FROM videos v 
+            INNER JOIN channel c ON v.channel_id = c.channel_id
+            WHERE v.video_id = %s
+        """, (int(id),))
+        fetched_video = cursor.fetchone()
+        if fetched_video:
+            fetched_video = list(fetched_video)
+            fetched_video.append(calculate_age(fetched_video[4]))
+            fetched_video.append(get_video_views(connection,int(id)))
+            fetched_video = tuple(fetched_video)
+            side_recommendations.append(fetched_video)
 
-    video_data = {
-        "video_details": video_details,
-        "video_age": video_age,
-        "video_views": video_views,
-        "is_liked": is_liked,
-        "comments": comments,
-        "side_recommendations": side_recommendations,
-        "like_count": like_count
-    }
+    like_count = get_like_count(connection, video_id)
+    video_data = [video_details, video_age, int(video_views), is_liked, comments, side_recommendations, int(like_count)]
+
     return video_data
 
