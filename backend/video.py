@@ -62,7 +62,7 @@ def get_video_views(connection, video_id):
         SELECT SUM(views) FROM watch_history WHERE video_id = %s
     """, (video_id,))
     total_views = cursor.fetchone()[0]
-    return total_views if total_views else 1
+    return int(total_views) if total_views else 1
 
 def get_like_count(connection, video_id):
     """Retrieve the total number of likes for a video."""
@@ -71,7 +71,7 @@ def get_like_count(connection, video_id):
         SELECT COUNT(*) FROM liked_videos WHERE video_id = %s
     """, (video_id,))
     like_count = cursor.fetchone()[0]
-    return like_count
+    return int(like_count)
 
 def video_details(connection, video_id, user_id):
     """Retrieve video details along with comments and like status."""
