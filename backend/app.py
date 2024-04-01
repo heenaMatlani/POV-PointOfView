@@ -199,7 +199,7 @@ def toggle_like():
         return jsonify({"message": "No user logged in."}), 400
 
     data = request.json
-    video_id = data.get('video_id')
+    video_id = data.get('videoId')
 
     connection = establish_connection()
     cursor = connection.cursor()
@@ -222,7 +222,7 @@ def submit_comment():
         return jsonify({"message": "No user logged in."}), 400
 
     data = request.json
-    video_id = data.get('video_id')
+    video_id = data.get('videoId')
     comment_text = data.get('comment')
 
     connection = establish_connection()
@@ -241,9 +241,11 @@ def get_video_details(video_id):
         return jsonify({"message": "No user logged in."}), 400
 
     connection = establish_connection()
-    video_data = video_details(connection, video_id, user_id)
+    print(int(video_id))
+    video_data = video_details(connection, int(video_id), user_id)
 
     if video_data:
+        print(video_data)
         return jsonify(video_data), 200
     else:
         return jsonify({"message": "Video not found."}), 404
