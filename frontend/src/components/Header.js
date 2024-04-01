@@ -121,13 +121,13 @@ function Header() {
             {isExploreOpen && (
           <div className="explore__list">
             <ul>
-              <li><button><i class="bi bi-geo-alt"></i>National</button> </li>
-              <li><button><i class="bi bi-film"></i>Entertainment </button></li>
-              <li><button><i class="bi bi-globe"></i>International </button></li>
-              <li><button><i class="bi bi-trophy"></i>Sports </button> </li>
-              <li><button><i class="bi bi-capsule"></i>Health  </button></li>
-              <li><button><i class="bi bi-briefcase"></i>Business  </button></li>
-              <li><button><i class="bi bi-phone"></i>Technology </button></li>
+              <Link to='/national'><li><button><i class="bi bi-geo-alt"></i>National</button> </li></Link>
+              <Link to='/entertainment'><li><button><i class="bi bi-film"></i>Entertainment </button></li></Link>
+              <Link to="/international"><li><button><i class="bi bi-globe"></i>International </button></li></Link>
+              <Link to="/sports"><li><button><i class="bi bi-trophy"></i>Sports </button> </li></Link>
+              <Link to="/health"><li><button><i class="bi bi-capsule"></i>Health  </button></li></Link>
+              <Link to="/business"><li><button><i class="bi bi-briefcase"></i>Business  </button></li></Link>
+              <Link to="/technology"><li><button><i class="bi bi-phone"></i>Technology </button></li></Link>
             </ul>
           </div>
         )}
