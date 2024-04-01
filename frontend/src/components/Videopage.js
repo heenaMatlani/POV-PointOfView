@@ -6,6 +6,7 @@ import thumbnail from "../assets/thumbnail.png";
 import SideCard from "./SideCard";
 import Comment from "./Comment";
 
+
 function Video() {
   const { videoId } = useParams();
   const [showFullDescription, setShowFullDescription] = useState(false);
