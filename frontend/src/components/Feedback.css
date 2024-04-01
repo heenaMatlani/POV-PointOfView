@@ -9,7 +9,10 @@
     height: 500px;
     margin-top: 50px;
     margin-left:30%;
-    background-color: rgba(0,0,0,0.3);
+    /* background-color: rgba(0,0,0,0.3); */
+    background: rgb(99,12,12);
+    background: linear-gradient(90deg, rgba(99,12,12,1) 40%, rgba(139,38,38,1) 53%, rgba(104,29,31,1) 66%, rgba(71,19,20,1) 100%);
+    /* background-image: url(../assets/bg4.jpeg); */
     padding: 20px;
     border-radius: 20px;
     border: 1px solid red;
