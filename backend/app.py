@@ -172,7 +172,7 @@ def submit_feedback():
 
     return jsonify({"message": "Feedback submitted successfully."}), 200
 
-@app.route('/likedVideos')
+@app.route('/likedvideos')
 def get_liked_videos():
 
     user_id = get_current_user()
@@ -181,13 +181,23 @@ def get_liked_videos():
 
     connection = establish_connection()
     cursor = connection.cursor()
-    cursor.execute("SELECT video_id FROM liked_videos WHERE user_id LIKE %s", (user_id,))
+    cursor.execute("SELECT video_id FROM liked_videos WHERE user_id = %s", (user_id,))
     video_ids = cursor.fetchall()
     video_data = []
-    for video_id in video_ids:
-        cursor.execute("SELECT * FROM videos WHERE video_id=%s", (int(video_id),))
+    for video_id_tuple in video_ids:
+        video_id = video_id_tuple[0]
+        cursor.execute("""
+            SELECT v.*, c.channel_name, c.channel_icon 
+            FROM videos v 
+            INNER JOIN channel c ON v.channel_id = c.channel_id
+            WHERE v.video_id = %s
+        """, (int(video_id),))
         fetched_video = cursor.fetchone()
         if fetched_video:
+            fetched_video = list(fetched_video)
+            fetched_video.append(calculate_age(fetched_video[4]))
+            fetched_video.append(get_video_views(connection,int(video_id)))
+            fetched_video = tuple(fetched_video)
             video_data.append(fetched_video)
     return jsonify(video_data)
 
