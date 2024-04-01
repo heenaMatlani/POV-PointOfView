@@ -9,33 +9,30 @@ import axios from "axios";
 
 function Video() {
   const { videoId } = useParams();
-  console.log(videoId);
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [comment, setComment] = useState("");
   const [commentsList, setCommentsList] = useState([]);
-  const [commentCount, setCommentCount] = useState(0); // Initial comment count
-  const [liked, setLiked] = useState(false); // State for like button
+  const [commentCount, setCommentCount] = useState(0);
+  const [liked, setLiked] = useState(false);
   const [videoData, setVideoData] = useState([]);
 
-useEffect(() => {
-  console.log("Component rendered");
-  console.log("videoId:", videoId);
+    useEffect(() => {
 
-  const fetchVideoDetails = async () => {
-    try {
-      console.log("Fetching video details...");
-      const response = await axios.get(`/video/${videoId}`);
-      console.log("Response:", response.data);
-      setVideoData(response.data);
-      setCommentsList(response.data[4]);
-      setCommentCount(response.data[4].length);
-    } catch (error) {
-      console.error("Error fetching video details:", error);
-    }
-  };
+      const fetchVideoDetails = async () => {
+        try {
+          console.log("Fetching video details...");
+          const response = await axios.get(`/video/${videoId}`);
+          setVideoData(response.data);
+          setLiked(response.data[3]);
+          setCommentsList(response.data[4]);
+          setCommentCount(response.data[4].length);
+        } catch (error) {
+          console.error("Error fetching video details:", error);
+        }
+      };
 
-  fetchVideoDetails();
-}, [videoId]);
+      fetchVideoDetails();
+    }, [videoId]);
 
 
 
@@ -49,9 +46,9 @@ useEffect(() => {
 
   const handleCommentSubmit = async () => {
     try {
-      await axios.post("/submit-comment", { videoId, comment });
-      setCommentsList([...commentsList, comment]);
-      setCommentCount(commentCount + 1);
+      const response = await axios.post("/submit-comment", { videoId, comment });
+      setCommentsList(response.data);
+      setCommentCount(response.data.length);
       setComment("");
     } catch (error) {
       console.error("Error submitting comment:", error);
@@ -63,10 +60,8 @@ useEffect(() => {
       const response = await axios.post("/toggle-like", { videoId });
       if (response.data.message.includes("added")) {
         setLiked(true);
-        setVideoData({ ...videoData, like_count: videoData.like_count + 1 });
       } else {
         setLiked(false);
-        setVideoData({ ...videoData, like_count: videoData.like_count - 1 });
       }
     } catch (error) {
       console.error("Error toggling like:", error);
@@ -75,16 +70,18 @@ useEffect(() => {
 
   return (
     <div className="video">
+      {videoData && videoData.length > 0 && (
+      <>
       <Header />
       <div className="video__information">
         <div className="video__main">
             <div className="video__player">
-            {videoData && videoData.length > 0 && (
+            
               <video className="video__play" controls width="100%">
                 <source src={videoData[0][2]} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              )}
+              
             </div>
 
           <div className="video__description">
@@ -138,7 +135,7 @@ useEffect(() => {
             </div>
             <div className="video__prevComments">
               {commentsList.map((comment, index) => (
-                <Comment key={index} username="Aarushi" commentVal={comment} />
+                <Comment key={index} username={comment[2]} commentVal={comment[0]} />
               ))}
             </div>
           </div>
@@ -155,11 +152,12 @@ useEffect(() => {
               channelName={recommendation[8]}
               views={recommendation[11]}
               age={recommendation[10]}
-              channelDescription={recommendation[5]}
             />
           ))}
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 }

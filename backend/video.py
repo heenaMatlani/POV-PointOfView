@@ -21,13 +21,18 @@ def calculate_age(date_uploaded):
 
 
 def get_comments(connection, video_id):
-    """Retrieve comments for a video with dates."""
+    """Retrieve comments for a video with usernames, comment text, and comment dates."""
     cursor = connection.cursor()
     cursor.execute("""
-        SELECT comment_text, comment_date FROM comments WHERE video_id = %s ORDER BY comment_date DESC
+        SELECT c.comment_text, c.comment_date, u.username
+        FROM comments c
+        JOIN user u ON c.user_id = u.user_id
+        WHERE c.video_id = %s
+        ORDER BY c.comment_date DESC
     """, (video_id,))
     comments = cursor.fetchall()
     return comments
+
 
 def is_video_liked(connection, user_id, video_id):
     """Check if a video is liked by a user."""

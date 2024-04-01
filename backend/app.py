@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request, redirect, url_for, session
 from flask_cors import CORS
 from algo import get_videos
-from video import calculate_age, get_video_views, video_details
+from video import calculate_age, get_video_views, video_details, get_comments
 
 app = Flask(__name__)
 CORS(app)
@@ -229,9 +229,10 @@ def submit_comment():
     cursor = connection.cursor()
     cursor.execute("INSERT INTO comments (video_id, comment_text, user_id, comment_date) VALUES (%s, %s, %s, NOW())",
                    (video_id, comment_text, user_id))
+    comments = get_comments(connection, int(video_id))
     connection.commit()
 
-    return jsonify({"message": "Comment added successfully."}), 200
+    return jsonify(comments), 200
 
 @app.route('/video/<int:video_id>', methods=['GET'])
 def get_video_details(video_id):
@@ -241,11 +242,9 @@ def get_video_details(video_id):
         return jsonify({"message": "No user logged in."}), 400
 
     connection = establish_connection()
-    print(int(video_id))
     video_data = video_details(connection, int(video_id), user_id)
 
     if video_data:
-        print(video_data)
         return jsonify(video_data), 200
     else:
         return jsonify({"message": "Video not found."}), 404
