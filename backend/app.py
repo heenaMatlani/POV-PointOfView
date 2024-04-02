@@ -153,7 +153,7 @@ def get_genre_videos():
 
 @app.route('/searched', methods=['GET'])
 def get_searched_videos():
-
+    """Function for retrieving videos of a searched title."""
     user_id = get_current_user()
     if user_id is None:
         return jsonify({"message": "No user logged in."}), 400

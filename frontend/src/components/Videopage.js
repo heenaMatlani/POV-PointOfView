@@ -69,6 +69,10 @@ function Video() {
     }
   };
 
+    const handleSideVideoClick = (videoId) => {
+    window.location.href = `/video/${videoId}`;
+  };
+
   return (
     <div className="video">
       {videoData && videoData.length > 0 && (
@@ -160,9 +164,12 @@ function Video() {
 
             <div className="video__sideRecom">
               {videoData[5].map((recommendation, index) => (
-                <Link className="video-link" to={`/video/${recommendation[0]}`}>
+                <div
+                  key={index}
+                  onClick={() => handleSideVideoClick(recommendation[0])} // Call handleSideVideoClick on click
+                  className="video-link"
+                >
                   <SideCard
-                    key={index}
                     video={recommendation[2]}
                     thumbnail={recommendation[3]}
                     channel={recommendation[9]}
@@ -171,7 +178,7 @@ function Video() {
                     views={recommendation[11]}
                     age={recommendation[10]}
                   />
-                </Link>
+                  </div>
               ))}
             </div>
           </div>
