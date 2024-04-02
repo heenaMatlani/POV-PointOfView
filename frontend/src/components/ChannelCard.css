@@ -1,72 +1,92 @@
 /* HorizontalCard.css */
-.ccard {
-  background-color: #191919;
+.channel-card {
+  background: color #191919;
+  position: relative;
+  /* align-items: center; */
   color: #fff;
-  width: 90%;
+  width: 85%;
   height: 220px;
   display: flex;
   padding: 10px;
   margin-bottom: 5px;
   transition: transform 0.3s ease;
+  margin-left:8%;
 }
 
-.ccard:hover {
+.channel-card:hover {
   transform: scale(1.01);
-  box-shadow: 0 0 20px #d92929;
+  border: 1px solid red;
+  /* box-shadow: 0 0 20px #d92929; */
 }
 
-.ccard__thumbnail {
+.channel-card__icon {
   margin-right: 20px;
 }
 
-.ccard__thumbnail .ccard__img {
-  width: 370px;
+.channel-card__icon .channel-card__img {
+  width: 220px;
   height: 200px;
+  border-radius: 50%; 
+  margin-left: 2%;
 }
 
-.ccard__description {
-  flex-grow: 1; /* Allow description to grow and take remaining space */
+.channel-card__description {
+  flex-grow: 1; 
+  /* overflow: hidden; */
+  /* white-space: nowrap; */
 }
 
-.ccard__channel {
-  width: 33px;
-  height: 33px;
-  border: 0.5px black;
-  border-radius: 50%;
-  margin-bottom: 5px; /* Add spacing between channel logo and description */
+
+.channel-card__info{
+  margin-left: 4%;
+  position: relative;
 }
 
-.ccard__text {
-  font-size: 22px;
-  margin-bottom: 5px; /* Remove default margin */
-}
-
-.ccard__details {
-  display: flex;
-  margin-bottom: 7px;
-}
-
-.ccard__views {
-  font-size: 15px;
-  color: #aba3a3;
-  margin-right: 2px;
-  margin-bottom: 0;
-}
-.ccard__age {
-  font-size: 15px;
-  color: #aba3a3;
-  margin-left: 2px;
-  margin-bottom: 0px;
-}
-
-.ccard__channelName {
+.channel-card__channelName {
   margin-top: 3px;
   font-size: 15px;
   color: #aba3a3;
   margin-left: 10px;
 }
 
-.ccard__channelDescription {
+.channel-card__channelDescription {
   font-size: 15px;
   color: #aba3a3;
+}
+.channel-button {
+  position: absolute;
+  display: flex;
+  align-items: center; /* Center items horizontally */
+  margin-left: 90%;
+  margin-top: 4%;
+}
+/* .channel-card__button {
+
+  background-color: #ccc; 
+  color: #fff;
+  padding: 8px 20px;
+  display: flex;
+  border-radius: 30px;
+  text-decoration: none;
+  width: 100%;
+  margin-left: auto;
+} */
+
+.channel-button button
+{
+    width: 100px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid white;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px; 
+
 }
