@@ -175,7 +175,7 @@ def get_searched_videos():
 
 @app.route('/submit-feedback', methods=['POST'])
 def submit_feedback():
-
+    """Function for inserting feedback given by user in database."""
     feedback_text = request.json.get('feedback_text')
 
     user_id = get_current_user()
@@ -192,7 +192,7 @@ def submit_feedback():
 
 @app.route('/likedvideos')
 def get_liked_videos():
-
+    """Function for retrieving videos liked by user."""
     user_id = get_current_user()
     if user_id is None:
         return jsonify({"message": "No user logged in."}), 400
@@ -222,6 +222,7 @@ def get_liked_videos():
 
 @app.route('/toggle-like', methods=['POST'])
 def toggle_like():
+    """Function for handling like click done by user."""
     user_id = get_current_user()
     if user_id is None:
         return jsonify({"message": "No user logged in."}), 400
@@ -245,6 +246,7 @@ def toggle_like():
 
 @app.route('/submit-comment', methods=['POST'])
 def submit_comment():
+    """Function for inserting comment given by user in database."""
     user_id = get_current_user()
     if user_id is None:
         return jsonify({"message": "No user logged in."}), 400

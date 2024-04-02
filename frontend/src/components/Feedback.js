@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import './Feedback.css';
 import Header from './Header';
+import axios from 'axios';
 import {FaStar} from 'react-icons/fa';
 
 function Feedback() {
-  // State to store the rating
   const [rating, setRating] = useState(0);
-  // State to store the feedback text
   const [feedbackText, setFeedbackText] = useState('');
   const [filledStars, setFilledStars] = useState([false, false, false, false, false]);
 
-  // Function to handle changes in star rating
+
   const handleRatingChange = (value) => {
-    // If the clicked star is already filled, reset rating to 0
     const updatedFilledStars = filledStars.map((_, index) => {
       if (index === value - 1) {
         return !filledStars[index];
@@ -20,8 +18,7 @@ function Feedback() {
       return index < value - 1;
     });
     setFilledStars(updatedFilledStars);
-  
-    // If the clicked star is already filled, reset rating to 0
+
     if (value === rating) {
       setRating(0);
     } else {
@@ -30,19 +27,22 @@ function Feedback() {
   };
 
 
-  // Function to handle changes in feedback text
   const handleFeedbackTextChange = (event) => {
     setFeedbackText(event.target.value);
   };
 
-  // Function to submit feedback
-  const handleSubmit = () => {
-    // You can implement the logic to submit feedback here
-    console.log('Rating:', rating);
-    console.log('Feedback:', feedbackText);
-    // Reset rating and feedback text after submission
-    setRating(0);
-    setFeedbackText('');
+  const handleSubmit = async () => {
+    try {
+      await axios.post('/submit-feedback', {
+        feedback_text: feedbackText
+      });
+      setRating(0);
+      setFeedbackText('');
+      alert('Feedback submitted successfully!');
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      alert('Failed to submit feedback. Please try again later.');
+    }
   };
 
   return (
