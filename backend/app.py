@@ -127,19 +127,37 @@ def get_videos_list():
 @app.route('/explore', methods=['POST'])
 def get_genre_videos():
     """Function for retrieving videos of a particular genre."""
+
+    user_id = get_current_user()
+    if user_id is None:
+        return jsonify({"message": "No user logged in."}), 400
+
     data = request.json
     genre = data.get('genre')
 
     connection = establish_connection()
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM videos WHERE genre=%s", (genre,))
+    cursor.execute("SELECT v.*, c.channel_name, c.channel_icon FROM videos v INNER JOIN channel c ON v.channel_id = "
+                   "c.channel_id WHERE genre=%s", (genre,))
     videos = cursor.fetchall()
+    modified_videos = []
+    if videos:
+        for video in videos:
+            video = list(video)
+            video.append(calculate_age(video[4]))
+            video.append(get_video_views(connection, video[0]))
+            modified_videos.append(tuple(video))
     cursor.close()
-    return jsonify(videos)
+    return jsonify(modified_videos)
 
 
 @app.route('/searched', methods=['GET'])
 def get_searched_videos():
+
+    user_id = get_current_user()
+    if user_id is None:
+        return jsonify({"message": "No user logged in."}), 400
+
     search_query = request.args.get('query')
     connection = establish_connection()
     cursor = connection.cursor()

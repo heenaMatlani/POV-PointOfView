@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../components/LikedVideos.css";
 import Header from "../components/Header"
 import { Link } from "react-router-dom";
@@ -6,136 +6,48 @@ import Card from "../components/Card";
 import thumbnail from "../assets/thumbnail.png";
 
 function Entertainment() {
-  let title = "Samay Raina's Insane Miss | COB: Homecoming | Samay vs Tracy";
-  let cn = "Aaj Tak";
-  let views = "12";
-  let age = "11 months ago";
-  let videoId = 31;
+    const [videos, setVideos] = useState([]);
+
+    useEffect(() => {
+        fetch('/explore', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ genre: 'Entertainment' })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (Array.isArray(data)) {
+                setVideos(data);
+            } else {
+                setVideos([]);
+            }
+        })
+        .catch(error => console.log(error));
+    }, []);
+
   return (
     <div className="likedVideos">
       <Header />
       <div class="container">
         <div class="row">
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <Link className="video-link" to="/video/31">
-              <Card
-                video=""
-                thumbnail={thumbnail}
-                channel={
-                  "https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg"
-                }
-                title={title}
-                channelName={cn}
-                views={views}
-                age={age}
-              />
-            </Link>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <Link className="video-link" to="/video/31">
-              <Card
-                video=""
-                thumbnail={thumbnail}
-                channel={
-                  "https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg"
-                }
-                title={title}
-                channelName={cn}
-                views={views}
-                age={age}
-              />
-            </Link>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <Link className="video-link" to="/video/31">
-              <Card
-                video=""
-                thumbnail={thumbnail}
-                channel={
-                  "https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg"
-                }
-                title={title}
-                channelName={cn}
-                views={views}
-                age={age}
-              />
-            </Link>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <Link className="video-link" to="/video/31">
-              <Card
-                video=""
-                thumbnail={thumbnail}
-                channel={
-                  "https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg"
-                }
-                title={title}
-                channelName={cn}
-                views={views}
-                age={age}
-              />
-            </Link>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <Link className="video-link" to="/video/31">
-              <Card
-                video=""
-                thumbnail={thumbnail}
-                channel={
-                  "https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg"
-                }
-                title={title}
-                channelName={cn}
-                views={views}
-                age={age}
-              />
-            </Link>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <Link className="video-link" to="/video/31">
-              <Card
-                video=""
-                thumbnail={thumbnail}
-                channel={
-                  "https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg"
-                }
-                title={title}
-                channelName={cn}
-                views={views}
-                age={age}
-              />
-            </Link>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <Link className="video-link" to="/video/31">
-              <Card
-                video=""
-                thumbnail={thumbnail}
-                channel={
-                  "https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg"
-                }
-                title={title}
-                channelName={cn}
-                views={views}
-                age={age}
-              />
-            </Link>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <Link className="video-link" to="/video/31">
-              <Card
-                video=""
-                thumbnail={thumbnail}
-                channel={
-                  "https://heena0708.s3.ap-south-1.amazonaws.com/icons/AajTak.jpeg"
-                }
-                title={title}
-                channelName={cn}
-                views={views}
-                age={age}
-              />
-            </Link>
-          </div>
+                    {videos.map(video => (
+                <div key={video[0]} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <Link className="video-link" to={`/video/${video[0]}`}>
+                        <Card
+                            className="recommended-card"
+                            video={video[2]}
+                            thumbnail={video[3]}
+                            channel={video[9]}
+                            title={video[6]}
+                            channelName = {video[8]}
+                            views = {video[11]}
+                            age = {video[10]}
+                          />
+                        </Link>
+                    </div>
+                ))}
         </div>
       </div>
     </div>
