@@ -12,7 +12,7 @@ function ChannelCard(props) {
         <p className="channel-card__title">{props.channelName}</p>
         <p className="channel-card__description">{props.channelDescription}</p>
         <div className="channel-button">
-        <button className="channel-card__button">VISIT</button>
+        <Link to= "/info"><button className="channel-card__button">VISIT</button></Link>
         </div>
       </div>
 
