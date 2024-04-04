@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './LoginPage.css';
-import logo from "../assets/logo1.jpeg";
+import logo from "../assets/logoo1.png";
 import { FaUser,FaLock } from 'react-icons/fa';
 const LoginPage = () => {
   const [isSignup, setIsSignUp] = useState(false);
@@ -72,10 +72,11 @@ const LoginPage = () => {
   return (
     <div className='wrapper'>
       <div className="login__left">
-<img className="login__logo" src={logo} alt="Logo" />
+{/* <img className="login__logo" src={logo} alt="Logo" /> */}
       </div>
       <div className='heading__pov'>
-        <h1 className='heading'>POV</h1>
+        {/* <h1 className='heading'>POV</h1> */}
+        <img className="login__logo" src={logo} alt="Logo" />
         <h2 className='subheading'>Where News Comes Alive from Every Point of view</h2>
         <div className='channel-link'>
        <p><Link to="/subscription">Are you a channel? </Link></p>

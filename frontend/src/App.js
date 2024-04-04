@@ -19,6 +19,8 @@ import Sports from "./explore/Sports";
 import Health from "./explore/Health";
 import Business from "./explore/Business";
 import Technology from "./explore/Technology";
+import About from "./components/About";
+import ChannelInfo from "./components/ChannelInfo";
 
 const promise = loadStripe("pk_test_51OxouLSGqkoequIlL3eNXirRn8pXldvul43e1JTQPEFjp6AySIlcBPVCPvj8Mjk2cU1X63ux4vLv1hpQwF0XvZO200r0TFZy54");
 
@@ -42,7 +44,8 @@ function App() {
         <Route path="/health" element={<Health />} />
         <Route path="/business" element={<Business />} />
         <Route path="/technology" element={<Technology />} />
-
+        <Route path="/about" element={<About />}/>
+        <Route path="/info" element={<ChannelInfo />}/>
       </Routes>
     </Router>
   );
