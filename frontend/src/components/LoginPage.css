@@ -29,14 +29,14 @@ left:20px
 .heading__pov{
 text-align: center;
 margin-bottom: 50px;
-margin-right: 20%;
+margin-right: 10%;
 }
 
 .heading__pov .heading{
     font-size: 100px;
 }
 .heading__pov .subheading{
-    font-size: 60px;
+    font-size: 33px;
 }
 
 form {

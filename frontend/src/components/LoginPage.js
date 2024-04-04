@@ -76,7 +76,7 @@ const LoginPage = () => {
       </div>
       <div className='heading__pov'>
         <h1 className='heading'>POV</h1>
-        <h2 className='subheading'>Point Of View</h2>
+        <h2 className='subheading'>Where News Comes Alive from Every Point of view</h2>
         <div className='channel-link'>
        <p><Link to="/subscription">Are you a channel? </Link></p>
       </div>
