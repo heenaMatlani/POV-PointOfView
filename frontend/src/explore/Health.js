@@ -3,7 +3,6 @@ import "../components/LikedVideos.css";
 import Header from "../components/Header"
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
-import thumbnail from "../assets/thumbnail.png";
 
 function Health() {
     const [videos, setVideos] = useState([]);

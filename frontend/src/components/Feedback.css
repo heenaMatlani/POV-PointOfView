@@ -1,14 +1,16 @@
 .feedback{
     background-color: #191919;
+    align-items: center;
     height: 100vh;
 }
 
   
   .feedback-container {
-    max-width: 1000px;
+    align-items: center;
+    width: 800px;
     height: 500px;
     margin-top: 50px;
-    margin-left:20%;
+    margin-left:25%;
     background-color:#191919;
     /* background-image: url(../assets/bg4.jpeg); */
     padding: 20px;
@@ -21,10 +23,13 @@
     font-size: 50px;
     margin-bottom: 50px;
     text-align: center;
-    color: aliceblue;
+    color: red;
     /* color: #191919; */
     text-transform: uppercase;
   }
+.star{
+  font-size: 40px;
+}
   .star-rating {
     display: flex; /* Display stars in a row */
     align-items: center; /* Align stars vertically */
@@ -59,9 +64,10 @@
   } */
   
   .star-rating .star {
-    font-size: 24px; /* Adjust the size of the stars */
+    font-size: 35px; /* Adjust the size of the stars */
     cursor: pointer;
     color: white; /* Initial color */
+    margin-left: 5px;
   }
   
   .star-rating .star:checked ~ .star {
@@ -80,7 +86,9 @@
   
   .feedback-text textarea {
     margin-top: 2%;
-    width: 100%;
+    margin-left: 80px;
+    width: 600px;
+    height: 170px;
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;

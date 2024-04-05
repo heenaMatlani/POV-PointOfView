@@ -89,13 +89,15 @@ function Video() {
 
               <div className="video__description">
                 <p className="video__title">{videoData[0][6]}</p>
-                <div className="hcard__details">
+                <div className="vcard__details">
                   <img
                     src={videoData[0][9]}
                     className="video__channel"
                     alt="channel"
                   />
+                  <div className="video__cn">
                   <p className="video__channelName">{videoData[0][8]}</p>
+                  </div>
                   <button
                     className={`btn video__likebutton hcard__details ${
                       liked ? "liked" : ""
