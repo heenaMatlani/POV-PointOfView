@@ -38,7 +38,16 @@
 
 .scard__text {
   font-size: 20px;
-  margin-bottom: 5px; /* Remove default margin */
+  margin-bottom: 5px; 
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit the text to two lines */
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.scard__text.truncated::after {
+  content: '...'; /* Add ellipsis if truncated */
 }
 
 .scard__details {

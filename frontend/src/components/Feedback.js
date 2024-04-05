@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './Feedback.css';
 import Header from './Header';
 import axios from 'axios';
-import {FaStar} from 'react-icons/fa';
 
 function Feedback() {
   const [rating, setRating] = useState(0);

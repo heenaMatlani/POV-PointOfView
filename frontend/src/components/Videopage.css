@@ -30,14 +30,18 @@
   margin-top: 30px;
 }
 
+.vcard__details{
+  display: flex;
+}
 .video__title {
   font-weight: 600;
   font-size: 25px;
+  margin-bottom: 0;
   color: #fff;
 }
 
 .video__channel {
-  margin-top: 20px;
+  margin-top: 15px;
   width: 47px;
   height: 47px;
   border: 0.5px black;
@@ -70,23 +74,26 @@
   margin-bottom: 0px;
 }
 
+.video__cn{
+  width: 150px;
+}
+
 .video__channelName {
-  margin-top: 27px;
-  font-size: 20px;
+  margin-top: 24px;
+  font-size: 18px;
   color: #aba3a3;
   margin-left: 10px;
 }
 
 .video__likebutton{
-  margin-left: 700px;
-  font-size: 40px;
+  margin-left: 70%;
   color: #fff;
-  border-radius: 20px;
 }
 
 .video__likeCount{
+  margin-top: 4px;
   color: #fff;
-  font-size: 33px;
+  font-size: 28px;
   margin-left: 15px;
 }
 .liked{
@@ -95,6 +102,7 @@
 
 .video__icon{
   margin-top: 10px;
+  font-size: 30px;
 }
 
 .video__channelDescription {
@@ -105,6 +113,7 @@
 
 .video__grey {
   padding: 12px;
+  margin-right: 10px;
   background-color: #2d2b2b;
 }
 
@@ -124,9 +133,6 @@
   height: 70px;
 }
 
-.video__icon{
-  font-size: 40px;
-}
 
 .video__comments{
   width: 900px;

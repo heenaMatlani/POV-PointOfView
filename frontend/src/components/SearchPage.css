@@ -10,3 +10,12 @@
   text-decoration: none;
 }
 
+.search.less-than-or-equal-to-3 {
+  background-color: #191919;
+  height: 100vh;
+}
+
+.search.more-than-3 {
+  background-color: #191919;
+  
+}
