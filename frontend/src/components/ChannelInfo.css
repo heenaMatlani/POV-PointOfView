@@ -1,0 +1,145 @@
+.channel-info{
+    background-color: #191919;
+    height: 220vh;
+}
+/* HorizontalCard.css */
+.info-card {
+    /* background: color white; */
+    background-color: #191919;
+    position: relative;
+    /* align-items: center; */
+    color: #fff;
+    width: 85%;
+    height: 200px;
+    display: flex;
+    padding: 10px;
+    margin-top: 20px;
+    transition: transform 0.3s ease;
+    margin-left:8%;
+  }
+
+ 
+  .info-card__icon {
+    margin-right: 20px;
+  }
+  .info-card__title{
+    margin-top: 3px;
+    font-size: 30px;
+    color:white;
+    text-transform: uppercase;
+    font-weight: 500;
+    /* margin-left: 10px; */
+  }
+  .info-card__icon .info-card__img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%; 
+    margin-left: 5%;
+    margin-top: 5%;
+  }
+  
+  .info-card__description {
+    font-size: 22px;
+    color: #aba3a3;
+    /* white-space: normal; */ 
+  }
+  .info-card__videos {
+    font-size: 18px;
+    color: #aba3a3;
+    /* white-space: normal; */ 
+  }
+
+  
+  
+  .info-card__info{
+    margin-left: 4%;
+    flex-grow: 1;
+    position: relative;
+  }
+  
+  .line {
+    margin-top: 30px;
+    border-top: 3px solid white;
+  }
+  
+  .channelInfo-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #d92929;
+  }
+  .videos-info{
+    margin-top: 3%;
+  }
+  
+  .channelInfo-card {
+    text-align: left;
+    font-size: 18px;
+    height: 350px;
+    transition: transform 0.3s ease;
+    border: 1px solid white;
+    margin-bottom: 10%;
+  }
+  
+  
+  .channelInfo-card__title{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 0;
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
+  }
+  
+  .channelInfo-card__channel {
+    width: 45px;
+    height: 45px;
+    border: 0.5px white;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-bottom: 10px; 
+    margin-top: 9px; 
+    margin-right: 5px; 
+  }
+  
+  .channelInfo-card__details {
+    display: flex;
+    margin-top: 5px;
+  }
+  
+  .channelInfo-card__views {
+    font-size: 15px;
+    color: white;
+    margin-top: 0;
+    margin-right: 1px;
+    margin-bottom: 0;
+  }
+  .channelInfo-card__age {
+    font-size: 15px;
+    color: white;
+    margin-top: 0;
+    margin-left: 1px;
+    margin-bottom: 0px;
+  }
+  
+  .channelInfo-card__channelName {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 15px;
+    color: white;
+  }
+  
+  .channelInfo-card__channelDescription {
+    font-size: 15px;
+    color:white;
+  }
+  
+  .channelInfo-card__info{
+    margin-top: 0;
+  }
+  .ccard__img{
+    width: 303px;
+    height: 200px;
+  }
