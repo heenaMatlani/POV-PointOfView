@@ -45,7 +45,7 @@ function App() {
         <Route path="/business" element={<Business />} />
         <Route path="/technology" element={<Technology />} />
         <Route path="/about" element={<About />}/>
-        <Route path="/info" element={<ChannelInfo />}/>
+        <Route path="/channels/:channelId" element={<ChannelInfo />}/>
       </Routes>
     </Router>
   );

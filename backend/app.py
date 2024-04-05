@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 current_user_id = None
-def establish_connection(host='localhost', user='root', passwd='Aa@241203', database='pov'):
+def establish_connection(host='localhost', user='root', passwd='matlani01k', database='pov'):
     """Establishes connection with local database, throws exception(not error) if connection not established"""
     import mysql.connector as cntr
     from mysql.connector import Error
@@ -278,6 +278,70 @@ def get_video_details(video_id):
         return jsonify(video_data), 200
     else:
         return jsonify({"message": "Video not found."}), 404
+
+
+@app.route('/channels', methods=['GET'])
+def get_channels():
+    """Function to retrieve channel information."""
+
+    user_id = get_current_user()
+    if user_id is None:
+        return jsonify({"message": "No user logged in."}), 400
+
+    connection = establish_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM channel")
+    channels = cursor.fetchall()
+    cursor.close()
+    return jsonify(channels)
+
+
+@app.route('/channels/<int:channel_id>')
+def get_channel_info(channel_id):
+    """Function to retrieve channel information and associated videos."""
+
+    user_id = get_current_user()
+    if user_id is None:
+        return jsonify({"message": "No user logged in."}), 400
+
+    connection = establish_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM channel WHERE channel_id = %s", (channel_id,))
+    channel_info = cursor.fetchone()
+    cursor.execute("SELECT * FROM videos WHERE channel_id = %s", (channel_id,))
+    videos = cursor.fetchall()
+
+    channel_data = {
+        'channel': {
+            'id': channel_info[0],
+            'name': channel_info[1],
+            'description': channel_info[2],
+            'subscription_type': channel_info[3],
+            'icon': channel_info[4]
+        },
+        'videos': []
+    }
+
+    for video in videos:
+        age = calculate_age(video[4])
+        views = get_video_views(connection,int(video[0]))
+        video_info = {
+            'video_id': video[0],
+            'channel_id': video[1],
+            'video_url': video[2],
+            'video_thumbnail': video[3],
+            'date_uploaded': video[4],
+            'description': video[5],
+            'video_title': video[6],
+            'genre': video[7],
+            'age': age,
+            'views': views,
+        }
+        channel_data['videos'].append(video_info)
+
+    return jsonify(channel_data)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

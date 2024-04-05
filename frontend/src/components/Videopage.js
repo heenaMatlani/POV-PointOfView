@@ -69,9 +69,18 @@ function Video() {
     }
   };
 
-    const handleSideVideoClick = (videoId) => {
-    window.location.href = `/video/${videoId}`;
+    const handleSideVideoClick = async (videoId) => {
+      try {
+    const response = await axios.get(`/video/${videoId}`);
+    setVideoData(response.data);
+    setLiked(response.data[3]);
+    setCommentsList(response.data[4]);
+    setCommentCount(response.data[4].length);
+  } catch (error) {
+    console.error("Error fetching video details:", error);
+  }
   };
+
 
   return (
     <div className="video">
@@ -81,7 +90,7 @@ function Video() {
           <div className="video__information">
             <div className="video__main">
               <div className="video__player">
-                <video className="video__play" controls width="100%">
+                <video  key={videoData[0][2]} className="video__play" controls width="100%">
                   <source src={videoData[0][2]} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
