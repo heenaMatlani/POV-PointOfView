@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import "./Header.css";
-import logo from "../assets/logo1.jpeg";
+import logo from "../assets/logoo1.png";
 import { FaBars, FaSearch} from "react-icons/fa";
 import { Link} from "react-router-dom";
 
@@ -133,7 +133,7 @@ function Header() {
         )}
             </li>
             <Link to="/feedback"><li><button><i class="bi bi-chat-square-text"></i> SEND FEEDBACK</button></li></Link>
-            <li><button><i class="bi bi-info-circle"></i> ABOUT</button></li>
+           <Link to= "/about"> <li><button><i class="bi bi-info-circle"></i> ABOUT</button></li></Link>
           </ul>
 
         </div>

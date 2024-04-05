@@ -69,7 +69,7 @@ function Feedback() {
                 {ratingValue <= rating ? (
                     <i className="bi bi-star-fill star" style={{color: 'red'}}></i>
                   ) : (
-                    <i className="bi bi-star star" style={{color: '#000000'}}></i>
+                    <i className="bi bi-star star" style={{color: 'red'}}></i>
                   )}
               </label>
             );
