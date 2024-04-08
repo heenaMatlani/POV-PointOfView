@@ -78,17 +78,16 @@ font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color:white
   }
   .about__link-space {
-    margin-right: 30px; /* Adjust the space as needed */
+    margin-right: 30px; 
    
     
   }
   .email {
-    /* display: inline-block; */
-    margin-bottom: 5px; /* Adjust margin as needed */
+    margin-bottom: 5px; 
   }
   
   .email a {
-    padding-left: 5px; /* Adjust padding as needed */
+    padding-left: 5px; 
   }
   .about__links a:hover {
     color: #B9131A;
