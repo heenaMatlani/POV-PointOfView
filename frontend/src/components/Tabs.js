@@ -7,7 +7,7 @@ function Tabs() {
     <div className="tab">
       <nav className="navbar">
         <Link to="/" className="navbar-brand" href="#">
-          <img src={logo} className="d-inline-block align-top payment__logo" alt="logo" ></img>
+          <img src={logo} className="d-inline-block align-top header__logo" alt="logo" ></img>
         </Link>
       </nav>
       <div className="text-center">
