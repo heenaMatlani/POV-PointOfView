@@ -28,9 +28,9 @@ function Tabs() {
               <td className="table-cell table-odd">
                 Monthly price after free month ends
               </td>
-              <td className="table-cell table-odd">$8.99</td>
-              <td className="table-cell table-odd">$12.99</td>
-              <td className="table-cell table-odd">$15.99</td>
+              <td className="table-cell table-odd">₹159.00</td>
+              <td className="table-cell table-odd">₹219.00</td>
+              <td className="table-cell table-odd">₹279.00</td>
             </tr>
             <tr>
               <td className="table-cell table-even">HD Available</td>
@@ -123,6 +123,7 @@ function Tabs() {
         <Link to="/payment" className="btn-t btn-lg">
           Come on Board{" "}
         </Link>
+       
       </div>
     </div>
   );
