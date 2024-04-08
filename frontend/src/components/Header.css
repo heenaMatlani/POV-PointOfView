@@ -404,7 +404,7 @@ font-size: 1em;
   transition-duration: 0.4s;
   background-color: red;
   content: "";
-  transform: translate(102px0);
+  transform: translate(102px,0);
 }
 .hamburger__hidden::before {
   top: -13px;

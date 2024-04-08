@@ -13,6 +13,7 @@ width: 80%;
 margin-top: 3%;
 margin-left: 10%;
 text-align: left;
+font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .about-info{
@@ -31,14 +32,14 @@ text-align: left;
 }
 .about-card:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px #d92929;
+    /* box-shadow: 0 0 20px #d92929; */
   }
   
   .about-card {
     text-align: left;
     font-size: 18px;
-    width: 350px;
-    height: 250px;
+    width: 400px;
+    height: 270px;
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -58,12 +59,38 @@ text-align: left;
     margin-left: 2%;
     color: white;
   }
+  .about__details h3{
+    font-size: 25px;
+    /* margin-top: 2%; */
+    margin-left: 2%;
+    color: white;
+  }
 
   .about__links{
     color: white;
     margin-left: 2%;
     margin-top: 15%;
+    font-size:25px ;
+
+  }
+  .about__links a{
+    text-decoration: none;
+    color:white
   }
   .about__link-space {
     margin-right: 30px; /* Adjust the space as needed */
+   
+    
   }
+  .email {
+    /* display: inline-block; */
+    margin-bottom: 5px; /* Adjust margin as needed */
+  }
+  
+  .email a {
+    padding-left: 5px; /* Adjust padding as needed */
+  }
+  .about__links a:hover {
+    color: #B9131A;
+  }
+  
