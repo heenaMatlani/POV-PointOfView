@@ -27,7 +27,7 @@ function About() {
                 <div className='email'>
                 <a href="mailto:aarushi.singh2412@gmail.com"><i className="fas fa-envelope"></i> aarushi.singh2412@gmail.com</a>
                   </div>
-                  <a href="https://www.instagram.com"><i className="fab fa-instagram"></i></a>
+                  <a href="https://www.instagram.com/24aarushi.singh24?igsh=cmJ5N2FjdzNnbmpp"><i className="fab fa-instagram"></i></a>
                   <span className="about__link-space"></span>
                   <a href="https://github.com/24-Aarushi-Singh-24"><i className="fab fa-github"></i></a>
                   <span className="about__link-space"></span>

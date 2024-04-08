@@ -77,7 +77,7 @@ const LoginPage = () => {
       <div className='heading__pov'>
         {/* <h1 className='heading'>POV</h1> */}
         <img className="login__logo" src={logo} alt="Logo" />
-        <h2 className='subheading reddit-mono'>Where News Comes Alive from Every Point of view</h2>
+        <h2 className='subheading reddit-mono'>Where News Comes Alive From Every Point Of View</h2>
 
       </div>
       <div className='login__right'>

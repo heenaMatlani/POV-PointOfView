@@ -99,11 +99,13 @@ function Video() {
               <div className="video__description">
                 <p className="video__title">{videoData[0][6]}</p>
                 <div className="vcard__details">
+                <Link to={`/channels/${videoData[0][10]}`} className="visit__button">
                   <img
                     src={videoData[0][9]}
                     className="video__channel"
                     alt="channel"
                   />
+                  </Link>
                   <div className="video__cn">
                   <p className="video__channelName">{videoData[0][8]}</p>
                   </div>

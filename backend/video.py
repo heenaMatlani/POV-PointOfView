@@ -78,7 +78,7 @@ def video_details(connection, video_id, user_id):
     cursor = connection.cursor()
 
     cursor.execute("""
-        SELECT v.*, c.channel_name, c.channel_icon 
+        SELECT v.*, c.channel_name, c.channel_icon, c.channel_id 
         FROM videos v 
         INNER JOIN channel c ON v.channel_id = c.channel_id
         WHERE v.video_id = %s
