@@ -1,7 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono&display=swap');
+
+/* Define the CSS class */
+.reddit-mono {
+  font-family: "Reddit Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 .wrapper
 {
     /* position: relative; */
-    background-image: url(../assets/login_bg.jpg);
+    /* background-image: url(../assets/login_bg.jpg); */
+    background-color: #191919;
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -36,18 +48,20 @@ margin-right: 10%;
     font-size: 100px;
 }
 .heading__pov .subheading{
+    /* font-family: 'Times New Roman', Times, serif; */
     font-size: 33px;
 }
 
+  
 form {
-    width: 400px; /* Adjust the width of the login box as needed */
+    width: 450px; /* Adjust the width of the login box as needed */
     height: 500px;
     padding: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    backdrop-filter: blur(30px);
+    /* border: 2px solid rgba(255, 255, 255, 0.2); */
+    border: 1px solid white;
+    /* backdrop-filter: blur(30px); */
     border-radius: 10px;
-    background-color: rgba(0,0,0,0.2);
+    background-color: #191919;
     /* background: transparent; */
     justify-content: center;
     align-items: center;
@@ -57,6 +71,8 @@ form {
 .wrapper h1{
     font-size: 36px;
     text-align: center;
+    color: #B9131A;
+    text-transform: uppercase;
 }
 
 
@@ -133,20 +149,28 @@ form {
     font-size: 20px;
     color: white;
     font-weight: 500;
-
-
+    align-items: center;  
+    display: flex;
+    justify-content: center;
+}
+.wrapper button:hover{
+    color: red;
 }
 
 .wrapper .register-link{
     font-size: 14.5px;
     text-align: center;
     margin-top: 20px;
+    color: white;
 }
 .register-link p a {
     color:white;
     text-decoration: none;
     font-weight: 600;
     margin-left: 10px;
+}
+.register-link p a:hover{
+    color: red;
 }
 .register-link p a:hover
 {
@@ -159,16 +183,16 @@ form {
   }
   
   .channel-link p {
-    color: white;
     font-size: 20px;
   }
   
   .channel-link p a {
-    color: white;
+    
+    color: lightgray;
     text-decoration: none;
   }
   
   .channel-link p a:hover {
-    color: lightgray;
+    color:red;
   }
   

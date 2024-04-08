@@ -23,7 +23,7 @@
     font-size: 50px;
     margin-bottom: 50px;
     text-align: center;
-    color: red;
+    color: #B9131A;
     /* color: #191919; */
     text-transform: uppercase;
   }
@@ -95,12 +95,10 @@
     background-color: transparent;
     color: white;
   }
-  textarea:focus {
-    /* background-color: rgba(255, 0, 0, 0.1); Add a slight background blur effect on focus */
-  }
+
   button {
     padding: 10px 20px;
-    background-color: red;
+    background-color: #B9131A;
     color: #fff;
     border: none;
     border-radius: 4px;

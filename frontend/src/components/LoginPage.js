@@ -77,10 +77,8 @@ const LoginPage = () => {
       <div className='heading__pov'>
         {/* <h1 className='heading'>POV</h1> */}
         <img className="login__logo" src={logo} alt="Logo" />
-        <h2 className='subheading'>Where News Comes Alive from Every Point of view</h2>
-        <div className='channel-link'>
-       <p><Link to="/subscription">Are you a channel? </Link></p>
-      </div>
+        <h2 className='subheading reddit-mono'>Where News Comes Alive from Every Point of view</h2>
+
       </div>
       <div className='login__right'>
       <form onSubmit={handleSubmit} style={{ height: passwordError ? '630px' : (isSignup ? '550px' : '400px') }}>
@@ -108,17 +106,13 @@ const LoginPage = () => {
 
         {passwordError && <p className="error-message">{passwordError}</p>}
         <button type='submit'>{isSignup ? 'Sign Up' : 'Login'}</button>
-        <div className='remember-forgot'>
-          <label>
-          <input type='checkbox'/> Remember me
-          </label>
-          <a href='#'>Forgot Password?</a>
-        </div>
         <div className='register-link'>
           <p>{isSignup ? 'Already have an account?' : "Don't have an account?"}<a href="#" onClick={toggleSignup}>{isSignup ? 'Login' : 'Sign Up'}</a></p>
         </div>
       </form>
-
+      <div className='channel-link'>
+       <p><Link to="/subscription">Are you a channel? </Link></p>
+      </div>
       </div>
     </div>
   );
