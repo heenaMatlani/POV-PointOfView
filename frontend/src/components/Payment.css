@@ -1,5 +1,5 @@
 .payment{
-    padding: 100px;
+    padding: 250px;
     color: #fff;
     background-color: #191919;
     width: 100%;
@@ -11,8 +11,8 @@
 }
 
 .payment__details{
-    margin-left: 30%;
-    width: 500px;
+    margin-left: 32%;
+    width: 400px;
     height: fit-content;
     border: 1px solid #fff;
     background-color: #191919;
@@ -50,4 +50,9 @@
     border-radius:2%;
     color: #fff;
     margin-right: 7px;
+}
+
+.payment__payValue{
+    margin-left: 52px;
+    width: 260px;
 }

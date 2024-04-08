@@ -10,7 +10,6 @@ import Feedback from "./components/Feedback";
 import SearchPage from "./components/SearchPage";
 import Subscription from "./components/Subscription";
 import Payment from "./components/Payment";
-import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import National from "./explore/National";
 import Entertainment from "./explore/Entertainment";
@@ -21,8 +20,6 @@ import Business from "./explore/Business";
 import Technology from "./explore/Technology";
 import About from "./components/About";
 import ChannelInfo from "./components/ChannelInfo";
-
-const promise = loadStripe("pk_test_51OxouLSGqkoequIlL3eNXirRn8pXldvul43e1JTQPEFjp6AySIlcBPVCPvj8Mjk2cU1X63ux4vLv1hpQwF0XvZO200r0TFZy54");
 
 function App() {
   return (
@@ -36,7 +33,7 @@ function App() {
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/searched" element={<SearchPage />} />
         <Route path="/subscription" element={<Subscription />} />
-        <Route path="/payment" element={<PaymentWrapper />} />
+        <Route path="/payment" element={<Payment/>} />
         <Route path="/national" element={<National/>} />
         <Route path="/entertainment" element={<Entertainment/>} />
         <Route path="/international" element={<International />} />
@@ -48,14 +45,6 @@ function App() {
         <Route path="/channels/:channelId" element={<ChannelInfo />}/>
       </Routes>
     </Router>
-  );
-}
-
-function PaymentWrapper() {
-  return (
-    <Elements stripe={promise}>
-      <Payment />
-    </Elements>
   );
 }
 
