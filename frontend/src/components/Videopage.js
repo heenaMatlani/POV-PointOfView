@@ -90,7 +90,7 @@ function Video() {
           <div className="video__information">
             <div className="video__main">
               <div className="video__player">
-                <video  key={videoData[0][2]} className="video__play" controls width="100%">
+                <video  key={videoData[0][2]} className="video__play" controls width="100%" autoPlay>
                   <source src={videoData[0][2]} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
@@ -126,7 +126,7 @@ function Video() {
                   </div>
                   <p className="video__channelDescription">
                     {showFullDescription
-                      ? videoData[0][5]
+                      ? videoData[0][5] + "\n\n\n\nPublished by " + videoData[0][8] + "\n"
                       : videoData[0][5].split("\n").slice(0, 3).join("\n")}
                     <span
                       className="video__showMore"
@@ -135,6 +135,7 @@ function Video() {
                       ...{showFullDescription ? "Show less" : "more"}
                     </span>
                   </p>
+
                 </div>
               </div>
               <div className="video__comments">

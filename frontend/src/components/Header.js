@@ -3,8 +3,12 @@ import "./Header.css";
 import logo from "../assets/logoo1.png";
 import { FaBars, FaSearch} from "react-icons/fa";
 import { Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 function Header() {
+
+    const navigate = useNavigate();
 
   const [isSidebarOpen , setIsSidebarOpen] = useState(false);
   const [isExploreOpen, setIsExploreOpen] = useState(false);
@@ -56,6 +60,15 @@ function Header() {
     setSearchQuery(event.target.value); // Update search query state
   };
 
+    const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      // Execute search action here
+      console.log("Enter key pressed. Perform search...");
+      navigate(`/searched?query=${searchQuery}`);
+      // Redirect to search page with the query
+    }
+  };
+
   return (
     <div className={`header sticky ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       {/* <div className="header__left">
@@ -79,10 +92,12 @@ function Header() {
             placeholder="Search"
             value={searchQuery}
             onChange={handleSearchChange}
+            onKeyPress={handleKeyPress}
           />
-          <button className="header__searchButton">
-            <Link to={`/searched?query=${searchQuery}`}><FaSearch className="header__search" /></Link>
+          <button className="header__searchButton" onClick={() => navigate(`/searched?query=${searchQuery}`)}>
+            <FaSearch className="header__search" />
           </button>
+
         </div>
 
       </div>

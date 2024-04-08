@@ -48,16 +48,16 @@ function ChannelInfo() {
               videos.length > 0 &&
               videos.map((video) => (
                 <div className="col-md-3" key={video.id}>
-                  <Link className="video-link" to={`/video/${video[0]}`}>
+                  <Link className="video-link" to={`/video/${video.video_id}`}>
                     <Card
                       className="recommended-card"
-                      video={video[2]}
-                      thumbnail={video[3]}
-                      channel={video[9]}
-                      title={video[6]}
-                      channelName={video[8]}
-                      views={video[11]}
-                      age={video[10]}
+                      video={video.video_url}
+                      thumbnail={video.video_thumbnail}
+                      channel={channelInfo.icon}
+                      title={video.video_title}
+                      channelName={channelInfo.name}
+                      views={video.views}
+                      age={video.age}
                     />
                   </Link>
                 </div>
